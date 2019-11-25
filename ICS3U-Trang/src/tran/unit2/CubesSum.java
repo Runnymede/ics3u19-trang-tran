@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * Prompts the user to enter a positive integer.<br>
  * Each digit would be cubed and then added together.<br>
- * The sum would be displayed to the user.<br>
+ * The sum would be displayed to the user.<br><p>
  * Date: November 1, 2019
  *@author Trang Tran
  */
@@ -17,11 +17,11 @@ public class CubesSum {
 			Scanner sc=new Scanner(System.in);
 			
 			//variables
-			int userNumber;//stores the user's number
+			int userNumber;
 			int cubedTotal=0;
 			int modulus;
 			
-			//asks the user to enter an integer
+			//gets user input
 			System.out.println("Please enter a positive integer");
 			userNumber=sc.nextInt();
 			
@@ -33,7 +33,7 @@ public class CubesSum {
 				userNumber/=10;
 			}
 			
-			//output that displays the sum
+			//Displays digit sums
 			System.out.println("The sum of the cubes of the digits is: "+cubedTotal);
 
 

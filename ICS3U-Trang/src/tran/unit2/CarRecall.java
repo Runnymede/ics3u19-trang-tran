@@ -2,9 +2,11 @@ package tran.unit2;
 
 import java.util.Scanner;
 /**
- * Checks if the user has a defected car model
+ * Asks the use to enter their car model and checks if the user has a defected model.<br>
+ * Automatically exits the user out of the program after the model has been entered
+ * and message has been displayed.<br><p>
  * Date: October 4, 2019
- *@author Trang Tran
+ * @author Trang Tran
  */
 public class CarRecall {
 	/**
@@ -17,7 +19,7 @@ public class CarRecall {
 		//variables
 		int carModel;//stores the car model
 
-		//input
+		//Gets user input
 		System.out.println("Our auto company produced some models of cars that are defective.");
 		System.out.println("To know if your car is defective, please enter your car model number:");
 		carModel=sc.nextInt();

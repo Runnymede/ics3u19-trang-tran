@@ -24,7 +24,8 @@ public class PrimeNumbers {
 		//asks for user input
 		System.out.println("Give me a number and i'll tell you if it's prime or composite");
 		userNumber=sc.nextInt();
-
+		
+		//divides the given number to check if it's divisible by some numbers
 		while(modulus!=0 && (numberCounter!=userNumber))
 		{
 
@@ -32,7 +33,8 @@ public class PrimeNumbers {
 			numberCounter++;
 
 		}
-
+		
+		//checks if the given number is prime or composite
 		if (modulus==0)
 		{
 			System.out.println("It is not prime! It's composite!");
@@ -41,7 +43,7 @@ public class PrimeNumbers {
 		{
 			System.out.println("It's prime!!");
 		}
-
+		
 
 
 

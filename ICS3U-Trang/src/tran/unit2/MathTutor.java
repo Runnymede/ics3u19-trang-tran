@@ -4,8 +4,10 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /**
- * Prompts the user for the correct answer to the equation
- * date: October 24, 2019
+ * This program generates two numbers and a random operation.<br>
+ * It uses these to make an equation for the user.<br>
+ * Prompts the user for the correct answer to the equation.<br><p>
+ * Date: October 24, 2019
  *@author Trang Tran 
  */
 public class MathTutor {
@@ -14,7 +16,6 @@ public class MathTutor {
  * @param args
  */
 	public static void main(String[] args) {
-		//adding the scanner
 		Scanner sc=new Scanner(System.in);
 		
 		//Rounding the answers to 2 decimal places
@@ -38,7 +39,7 @@ public class MathTutor {
 		//generating a random number to decide the operator
 		randomOperator=(int)(Math.random()*4)+1;
 		
-		//generates operator and prompts the user for the answer
+		//generates operator for the equation and prompts the user for the answer to the equation
 		if (randomOperator==1)
 		{
 			System.out.println("What is "+ number1+" / "+number2);

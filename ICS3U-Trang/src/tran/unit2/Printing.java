@@ -4,7 +4,8 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 /**
- * Prompts the user for the number of prints they need and gives them the price
+ * Prompts the user for the number of prints they need.<br>
+ * Displays the price per print and the total cost of the printing.<br><p>
  * Date: October 3, 2019
  * @author Trang Tran
  */
@@ -20,9 +21,9 @@ public class Printing {
 		DecimalFormat cost=new DecimalFormat("$0.00");
 		
 		//variables
-		int numberofCopies;//stores the number of copies the user enters
-		double pricePerCopy;//stores the price point of the number of copies
-		double totalCost;//stores the total cost of printing
+		int numberofCopies;
+		double pricePerCopy;
+		double totalCost;
 		
 		//Checks the number of prints the user enters and saves the price
 		System.out.println("Enter the number of copies to be printed: ");
@@ -49,12 +50,11 @@ public class Printing {
 			pricePerCopy=0.30;
 		}
 		
-		System.out.println("Price per copy is: "+ cost.format(pricePerCopy));
-		
 		//calculating the total cost of the printing
 		totalCost=pricePerCopy*numberofCopies;
 		
 		//output 
+		System.out.println("Price per copy is: "+ cost.format(pricePerCopy));
 		System.out.println("Your total cost is: "+ cost.format(totalCost));
 	}
 }

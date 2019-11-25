@@ -1,9 +1,10 @@
 package tran.unit2;
-
 import java.util.Scanner;
 
 /**
- * Prompts the user to guess a number and compares that number to the computer's number
+ * Prompts the user to guess a number.<br>
+ * Generates a random number for the user to guess.<br>
+ * Compares the user's guess to the random number.<br><p>
  * Date: October 22, 2019
  *@author Trang Tran
  */
@@ -22,7 +23,7 @@ public class GuessingGame {
 		//choosing the computer number to compare to
 		mySecretNumber=(int)(Math.random()*20)+1;
 		
-		//prompt the user to guess the number 
+		//prompts the user to guess the number 
 		System.out.println("I'm thinking of a number, can you guess it?");
 		System.out.println("I'll give you a hint. It's between 1 and 20");
 		userSecretNumber=sc.nextInt();

@@ -5,14 +5,13 @@ import java.util.Scanner;
 /**
  * Asks the user to enter a car model number. <br>
  * If the user entered a defective car model number, then it tells the user it's defective.<br>
- * It keeps asking the user to enter a car model number or to exit the program.<br>
+ * It keeps asking the user to enter a car model number until the user wants to exit the program.<br><p>
  * Date: October 28, 2019
  *@author Trang Tran
  */
 public class CarRecall2 {
 	/**
 	 * Start of the program
-	 * @param args
 	 */
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);

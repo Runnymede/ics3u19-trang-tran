@@ -1,7 +1,7 @@
 package tran.unit2;
 /**
  * Calculates the total amount of years for $2,500 of investment to be worth at least $5,000.<br>
- * Every year, the investment increases by 7.5%<br>
+ * Every year, the investment increases by 7.5%<br><p>
  * Date: October 29, 2019.
  *@author Trang Tran
  */
@@ -13,9 +13,9 @@ public class Investment {
 	public static void main(String[] args) {
 
 		//variables	
-		double investment=2500;//stores the initial investment of $2500
-		int year=0;//counter for amount of years
-		double annualIncrease=0.075;//stores the annual increase
+		double investment=2500;
+		int year=0;
+		double annualIncrease=0.075;
 		
 		//tells the user what the program is doing
 		System.out.println("Hello, I've been asked to calculate how many years it takes to "

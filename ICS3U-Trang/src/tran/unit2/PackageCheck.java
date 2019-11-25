@@ -3,7 +3,7 @@ package tran.unit2;
 import java.util.Scanner;
 
 /**
- * Determines if the packages from the user is suitable for delivery or not
+ * Determines if the packages from the user is suitable for delivery or not<br><p>
  * Date: October 15, 2019
  *@author Trang Tran
  */

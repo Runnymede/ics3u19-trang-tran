@@ -3,8 +3,8 @@ package tran.unit2;
 import java.util.Scanner;
 
 /**
- * Prompts the sure for an integer and checks if the integer is a negative number 
- * and if the divisible by 7
+ * Prompts the user for an integer and checks if the integer is a negative number 
+ * and if the divisible by 7.<br><p>
  * Date: October 2, 2019
  *@author Trang Tran
  */
@@ -13,7 +13,6 @@ public class NumberCheck {
 	 * Start of the program
 	 */
 	public static void main(String[] args) {
-		//new scanner
 		Scanner sc=new Scanner(System.in);
 		
 		//variables
@@ -23,8 +22,6 @@ public class NumberCheck {
 		//prompts the user for an integer
 		System.out.println("Please enter an integer");
 		userInteger=sc.nextInt();
-		
-		divisibility=userInteger%7;
 		
 		//determines if the integer is positive or negative
 		if (userInteger <0)
@@ -37,6 +34,8 @@ public class NumberCheck {
 		}
 		
 		//determines if the integer is divisible by 7
+		divisibility=userInteger%7;
+		
 		if (divisibility==0)
 		{
 			System.out.println("Your number is divisible by 7!!");
