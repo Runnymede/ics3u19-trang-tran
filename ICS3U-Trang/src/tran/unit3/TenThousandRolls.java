@@ -1,7 +1,7 @@
 package tran.unit3;
 /**
- * This program rolls two dies and adds the total 10,000 times.<br>
- * 
+ * This program rolls two dies 10,000 times and adds the total each time.<br>
+ * It then outputs the amount of times each total has appeared.<br><p>
  * Date: November 25, 2019
  * @author Trang Tran
  */

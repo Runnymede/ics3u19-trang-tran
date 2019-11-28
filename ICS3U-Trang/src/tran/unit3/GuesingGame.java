@@ -72,6 +72,7 @@ public class GuesingGame {
 				System.out.println("I give up!");
 			}
 		}
+		//output if the computer wins
 		System.out.println("I guessed it!!");
 		
 
