@@ -21,7 +21,8 @@ public class TicTacToe {
 		String startAnswer;
 		int playRow;
 		int playCol;
-
+		int turns;
+		
 		//Asks the user to play the game
 		System.out.println("Do you want to play Tic Tac Toe? Yes or no?");
 		startAnswer=sc.next();
@@ -35,7 +36,7 @@ public class TicTacToe {
 			System.out.println("Player 2 is O");
 			System.out.print("***********************************************\n");
 			System.out.println("Loading...");
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			
 			//printing the board for the user
 			System.out.println("  1  2  3");
@@ -52,10 +53,10 @@ public class TicTacToe {
 			}
 		
 			//Counts the number of turns and stops when the board is full
-			for(int i=1;i<=9;i++) 
+			for(turns=1;turns<=9;turns++) 
 			{
 				//Decides which player goes right now
-				if (i==1||i==3||i==5||i==7||i==9)
+				if (turns==1||turns==3||turns==5||turns==7||turns==9)
 				{
 					System.out.println("PLAYER 1");
 					System.out.println("Where do you want to go?");
@@ -64,7 +65,7 @@ public class TicTacToe {
 					playCol=sc.nextInt();
 					
 					//Decides if a player is trying to overwrite the other player
-					if (board[playRow][playCol]=='O'||board[playRow][playCol]=='X')
+					if (board[playRow-1][playCol-1]=='O')
 					{
 						System.out.println("ARE YOU TRYING TO OVERWRITE ANOTHER PLAYER???!!!");
 						System.out.println("Enter another row and column please:");
@@ -72,7 +73,6 @@ public class TicTacToe {
 						playCol=sc.nextInt();
 					}
 					board[playRow-1][playCol-1]='X';
-
 				}	
 				else
 				{
@@ -83,13 +83,14 @@ public class TicTacToe {
 					playCol=sc.nextInt();
 					
 					//Decides if a player is trying to overwrite the other player
-					if (board[playRow][playCol]=='O'||board[playRow][playCol]=='X')
+					if (board[playRow-1][playCol-1]=='X')
 					{
 						System.out.println("ARE YOU TRYING TO OVERWRITE ANOTHER PLAYER???!!!");
 						System.out.println("Enter another row and column please:");
 						playRow=sc.nextInt();
 						playCol=sc.nextInt();
 					}
+
 					board[playRow-1][playCol-1]='O';
 				}
 					
@@ -113,44 +114,38 @@ public class TicTacToe {
 					if(board[0][0]=='O')
 					{
 						System.out.println("Player 2 wins!!");
-						System.out.println("Do you want to play again?");
-						startAnswer=sc.next();
+						break;
 					}
 					else
 					{
 						System.out.println("Player 1 wins!!");
-						System.out.println("Do you want to play again?");
-						startAnswer=sc.next();
+						break;
 					}
 				}
 				else if ((board[1][0]=='O'||board[1][0]=='X')&&(board[1][1]=='O'||board[1][1]=='X')&&(board[1][2]=='O'&&board[1][2]=='X'))
 				{
-					if(board[0][0]=='O')
+					if(board[1][0]=='O')
 					{
 						System.out.println("Player 2 wins!!");
-						System.out.println("Do you want to play again?");
-						startAnswer=sc.next();
+						break;
 					}
 					else
 					{
 						System.out.println("Player 1 wins!!");
-						System.out.println("Do you want to play again?");
-						startAnswer=sc.next();
+						break;
 					}
 				}
 				else if((board[2][0]=='O'||board[2][0]=='X')&&(board[2][1]=='O'||board[2][1]=='X')&&(board[2][1]=='O'||board[2][1]=='X'))
 				{
-					if(board[0][0]=='O')
+					if(board[2][0]=='O')
 					{
 						System.out.println("Player 2 wins!!");
-						System.out.println("Do you want to play again?");
-						startAnswer=sc.next();
+						break;
 					}
 					else
 					{
 						System.out.println("Player 1 wins!!");
-						System.out.println("Do you want to play again?");
-						startAnswer=sc.next();
+						break;
 					}
 				}
 				else if((board[0][0]=='O'||board[0][0]=='X')&&(board[1][1]=='O'||board[1][1]=='X')&&(board[2][2]=='O'||board[2][2]=='X'))
@@ -158,29 +153,64 @@ public class TicTacToe {
 					if(board[0][0]=='O')
 					{
 						System.out.println("Player 2 wins!!");
-						System.out.println("Do you want to play again?");
-						startAnswer=sc.next();
+						break;
 					}
 					else
 					{
 						System.out.println("Player 1 wins!!");
-						System.out.println("Do you want to play again?");
-						startAnswer=sc.next();
+						break;
 					}
 				}
 				else if((board[0][2]=='O'||board[0][2]=='X')&&(board[1][1]=='O'||board[1][1]=='X')&&(board[2][0]=='O'||board[2][0]=='X'))
 				{
-					if(board[0][0]=='O')
+					if(board[0][2]=='O')
 					{
 						System.out.println("Player 2 wins!!");
-						System.out.println("Do you want to play again?");
-						startAnswer=sc.next();
+						break;
 					}
 					else
 					{
 						System.out.println("Player 1 wins!!");
-						System.out.println("Do you want to play again?");
-						startAnswer=sc.next();
+						break;
+					}
+				}
+				else if((board[0][0]=='O'||board[0][0]=='X')&&(board[1][0]=='O'||board[1][0]=='X')&&(board[2][0]=='O'||board[2][0]=='X'))
+				{
+					if(board[0][0]=='O')
+					{
+						System.out.println("Player 2 wins!!");
+						break;
+					}
+					else
+					{
+						System.out.println("Player 1 wins!!");
+						break;
+					}
+				}
+				else if((board[0][1]=='O'||board[0][1]=='X')&&(board[1][1]=='O'||board[1][1]=='X')&&(board[2][1]=='O'||board[2][1]=='X'))
+				{
+					if(board[0][1]=='O')
+					{
+						System.out.println("Player 2 wins!!");
+						break;
+					}
+					else
+					{
+						System.out.println("Player 1 wins!!");
+						break;
+					}
+				}
+				else if((board[0][2]=='O'||board[0][2]=='X')&&(board[1][2]=='O'||board[1][2]=='X')&&(board[2][2]=='O'||board[2][2]=='X'))
+				{
+					if(board[0][2]=='O')
+					{
+						System.out.println("Player 2 wins!!");
+						break;
+					}
+					else
+					{
+						System.out.println("Player 1 wins!!");
+						break;
 					}
 				}
 				else
@@ -190,6 +220,12 @@ public class TicTacToe {
 				
 				
 			}//end For loop
+			
+			//decides whether it's a tie
+			if (turns==9)
+			{
+				System.out.println("It's a tie!!!");
+			}
 			
 			//Asks the user is they want to play the game
 			System.out.println("Do you want to play again?");
