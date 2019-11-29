@@ -17,7 +17,6 @@ public class TicTacToe {
 		Scanner sc=new Scanner(System.in);
 
 		//variables
-		char[][] board={{'_','_','_'},{'_','_','_'},{'_','_','_'}};
 		String startAnswer;
 		int playRow;
 		int playCol;
@@ -30,6 +29,9 @@ public class TicTacToe {
 		//start of the game code
 		while (startAnswer.equalsIgnoreCase("yes"))
 		{
+			//reset board
+			char[][] board={{'_','_','_'},{'_','_','_'},{'_','_','_'}};
+			
 			//Tells the player what they are and prints board
 			System.out.println("***********************************************");
 			System.out.println("Player 1 is X");
@@ -78,7 +80,7 @@ public class TicTacToe {
 				{
 					System.out.println("PLAYER 2");
 					System.out.println("Where do you want to go?");
-					System.out.println("Enter row (first) and column (with a space between numbers or press enter):");
+					System.out.println("Enter row (first) and column (with a space between numbers):");
 					playRow=sc.nextInt();
 					playCol=sc.nextInt();
 					
@@ -108,8 +110,9 @@ public class TicTacToe {
 					System.out.print("\n\n");
 				}
 				
-				//checks if the player wins
-				if ((board[0][0]=='O' || board[0][0]=='X')&&(board[0][1]=='O'||board[0][1]=='X')&& (board[0][2]=='O'||board[0][2]=='X'))
+				//checks if the player wins and which player
+				//win by rows
+				if ((board[0][0]=='O' && board[0][1]=='O' && (board[0][2]=='O')|| (board[0][0]=='X'&&board[0][1]=='X')&& board[0][2]=='X'))
 				{
 					if(board[0][0]=='O')
 					{
@@ -122,7 +125,7 @@ public class TicTacToe {
 						break;
 					}
 				}
-				else if ((board[1][0]=='O'||board[1][0]=='X')&&(board[1][1]=='O'||board[1][1]=='X')&&(board[1][2]=='O'&&board[1][2]=='X'))
+				else if ((board[1][0]=='O'&&board[1][1]=='O'&&board[1][2]=='O')||(board[1][0]=='X'&&board[1][1]=='X'&&board[1][2]=='X'))
 				{
 					if(board[1][0]=='O')
 					{
@@ -135,7 +138,7 @@ public class TicTacToe {
 						break;
 					}
 				}
-				else if((board[2][0]=='O'||board[2][0]=='X')&&(board[2][1]=='O'||board[2][1]=='X')&&(board[2][1]=='O'||board[2][1]=='X'))
+				else if((board[2][0]=='O'&&board[2][1]=='O'&& board[2][2]=='O')||(board[2][0]=='X'&&board[2][1]=='X'&&board[2][2]=='X'))
 				{
 					if(board[2][0]=='O')
 					{
@@ -148,7 +151,8 @@ public class TicTacToe {
 						break;
 					}
 				}
-				else if((board[0][0]=='O'||board[0][0]=='X')&&(board[1][1]=='O'||board[1][1]=='X')&&(board[2][2]=='O'||board[2][2]=='X'))
+				//win by diagonals
+				else if((board[0][0]=='O'&&board[1][1]=='O'&&board[2][2]=='O')||(board[0][0]=='X'&&board[1][1]=='X'&&board[2][2]=='X'))
 				{
 					if(board[0][0]=='O')
 					{
@@ -161,7 +165,7 @@ public class TicTacToe {
 						break;
 					}
 				}
-				else if((board[0][2]=='O'||board[0][2]=='X')&&(board[1][1]=='O'||board[1][1]=='X')&&(board[2][0]=='O'||board[2][0]=='X'))
+				else if((board[0][2]=='O'&&board[1][1]=='O'&&board[2][0]=='O')||(board[0][2]=='X'&&board[1][1]=='X'&&board[2][0]=='X'))
 				{
 					if(board[0][2]=='O')
 					{
@@ -174,7 +178,8 @@ public class TicTacToe {
 						break;
 					}
 				}
-				else if((board[0][0]=='O'||board[0][0]=='X')&&(board[1][0]=='O'||board[1][0]=='X')&&(board[2][0]=='O'||board[2][0]=='X'))
+				//win by columns
+				else if((board[0][0]=='O'&&board[1][0]=='O'&&board[2][0]=='O')||(board[0][0]=='X'&&board[1][0]=='X'&&board[2][0]=='X'))
 				{
 					if(board[0][0]=='O')
 					{
@@ -187,7 +192,7 @@ public class TicTacToe {
 						break;
 					}
 				}
-				else if((board[0][1]=='O'||board[0][1]=='X')&&(board[1][1]=='O'||board[1][1]=='X')&&(board[2][1]=='O'||board[2][1]=='X'))
+				else if((board[0][1]=='O'&&board[1][1]=='O'&&board[2][1]=='O')||(board[0][1]=='X'&&board[1][1]=='X'&&board[2][1]=='X'))
 				{
 					if(board[0][1]=='O')
 					{
@@ -200,7 +205,7 @@ public class TicTacToe {
 						break;
 					}
 				}
-				else if((board[0][2]=='O'||board[0][2]=='X')&&(board[1][2]=='O'||board[1][2]=='X')&&(board[2][2]=='O'||board[2][2]=='X'))
+				else if((board[0][2]=='O'&&board[1][2]=='O'&&board[2][2]=='O')||(board[0][2]=='X'&&board[1][2]=='X'&&board[2][2]=='X'))
 				{
 					if(board[0][2]=='O')
 					{
@@ -218,14 +223,13 @@ public class TicTacToe {
 					//continue
 				}
 				
+				//decides whether it's a tie
+				if (turns==9)
+				{
+					System.out.println("It's a tie!!!");
+				}
 				
 			}//end For loop
-			
-			//decides whether it's a tie
-			if (turns==9)
-			{
-				System.out.println("It's a tie!!!");
-			}
 			
 			//Asks the user is they want to play the game
 			System.out.println("Do you want to play again?");
