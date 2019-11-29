@@ -26,13 +26,13 @@ public class TicTacToe {
 		System.out.println("Do you want to play Tic Tac Toe? Yes or no?");
 		startAnswer=sc.next();
 
-		//start of the game code
+		//start of the game and loops it if the player wants to play again
 		while (startAnswer.equalsIgnoreCase("yes"))
 		{
-			//reset board
+			//Sets tic tac toe board and resets the whole board  
 			char[][] board={{'_','_','_'},{'_','_','_'},{'_','_','_'}};
 			
-			//Tells the player what they are and prints board
+			//Tells the player what they are
 			System.out.println("***********************************************");
 			System.out.println("Player 1 is X");
 			System.out.println("Player 2 is O");
@@ -40,7 +40,7 @@ public class TicTacToe {
 			System.out.println("Loading...");
 			Thread.sleep(3000);
 			
-			//printing the board for the user
+			//Prints the tis tac toe board for the user
 			System.out.println("  1  2  3");
 			for (int row=0; row<3;row++)
 			{
