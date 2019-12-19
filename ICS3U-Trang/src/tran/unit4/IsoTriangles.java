@@ -7,12 +7,11 @@ import java.util.Scanner;
  * This triangle uses spaces to neatly formatted to actually look like a triangle.<p>
  * Example:<br>
  * Enter the size:<br>
- * 4<br>
- *     *<br>
- *    ***<br>
- *   *****<br>
- *  *******<br>
- * <p>
+ * 4<pre>
+ *     *
+ *    ***
+ *   *****
+ *  *******<p>
  * Date: December 17, 2019
  * @author Trang Tran
  */
@@ -43,7 +42,10 @@ public class IsoTriangles {
 
 	}
 
-	//Method "drawSpaces" decides how many spaces will be printed before the star
+	/**
+	 * Method "drawSpaces" decides how many spaces will be printed before the star
+	 * @param amountOfSpaces
+	 */
 	public static void drawSpaces(int amountOfSpaces){
 		for (int i=1;i<=(amountOfSpaces-1);i++)
 		{
@@ -51,7 +53,10 @@ public class IsoTriangles {
 		}
 	}
 
-	//Method "drawStars" decides how many stars will be printed to the screen
+	/**
+	 * Method "drawStars" decides how many stars will be printed to the screen
+	 * @param stars
+	 */
 	public static void drawStars(int stars) {
 		for (int i=1;i<=stars;i++) {
 			System.out.print("*");

@@ -37,11 +37,21 @@ public class TemperatureConverter {
 		
 	}
 	
+	/**
+	 * 
+	 * @param fahTemp
+	 * @return
+	 */
 	public static double FahrenheitToCelsius(double fahTemp) {
 		double tempFinal=(fahTemp - 32) * 5 / 9;
 		return tempFinal;
 	}
 	
+	/**
+	 * 
+	 * @param celTemp
+	 * @return
+	 */
 	public static double CelsiusToFahrenheit(double celTemp) {
 		double tempFinal=celTemp * 9 / 5 + 32;
 		return tempFinal;
