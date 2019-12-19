@@ -2,7 +2,7 @@ package tran.unit4;
 /**
  * Testing two methods that contain images.
  * Date: December 16, 2019
- * @author 333771657
+ * @author Trang Tran
  */
 public class Signatures {
 	/**
