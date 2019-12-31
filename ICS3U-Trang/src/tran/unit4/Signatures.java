@@ -1,15 +1,15 @@
 package tran.unit4;
 /**
- * Practice using two methods to print two different images to the console.<br>
+ * Method Practice-Using two methods to print two different images to the console.<br>
  * Date: December 16, 2019
  * @author Trang Tran
  */
 public class Signatures {
+	
 	/**
-	 * Start of the program
+	 * Main method
 	 * @param args
 	 */
-	
 	public static void main(String[] args) {
 		printSignature();
 		printImage();

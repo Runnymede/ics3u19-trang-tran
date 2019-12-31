@@ -3,7 +3,7 @@ package tran.unit4;
 import java.util.Scanner;
 
 /**
- * Testing of methods<br>
+ * This program has 4 different methods that uses arrays.<br>
  * Date: December 19, 2019
  * @author Trang Tran
  */
@@ -24,10 +24,12 @@ public class MathPlus {
 	}
 
 	/**
-	 * 
-	 * @param minArray
-	 * @return 
+	 * Method "min" receives an array and finds the index of the smallest value
+	 * @param minArray receives an array
+	 * @return The index of the smallest value
 	 */
+	
+	//TODO: Figure out how to find the index 
 	public static int min(int[]minArray) {
 		int currentMin=minArray[0];
 		
@@ -38,10 +40,11 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
-	 * @param maxArray
-	 * @return
+	 * Method "max" receives an array and finds the index of the largest value
+	 * @param maxArray receives an array
+	 * @return The index of the largest value
 	 */
+	//TODO: Figure out how to find the index 
 	public static int max(int[]maxArray) {
 		int currentMax=maxArray[0];
 		
@@ -52,9 +55,9 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
-	 * @param sumArray
-	 * @return
+	 * Method "sum" receives an array and adds all the values 
+	 * @param sumArray receives an array
+	 * @return The sum of all the values 
 	 */
 	public static int sum(int[]sumArray) {
 		int total=0;
@@ -65,9 +68,9 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
-	 * @param averageArray
-	 * @return
+	 * Method "average" receives an array and gets the average all the values 
+	 * @param averageArray receives an array
+	 * @return The average of all the values 
 	 */
 	public static double average(int[]averageArray) {
 		double total=0;
