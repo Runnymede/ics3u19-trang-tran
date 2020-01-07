@@ -27,10 +27,12 @@ public class MathPlus {
 		System.out.println("Maximum Value: "+max(array2));
 		System.out.println("Sum: "+sum(array2));
 		System.out.println("Average: "+average(array2));
+		
 	}
 
 	/**
-	 * Method "min" receives an array and finds the index of the smallest value
+	 * Method "min" receives an array and finds the index of 
+	 * the first occurrence of the smallest value
 	 * @param numbers receives an array
 	 * @return The index of the smallest value
 	 */
@@ -50,7 +52,8 @@ public class MathPlus {
 	}
 
 	/**
-	 * Method "max" receives an array and finds the index of the largest value
+	 * Method "max" receives an array and finds the index 
+	 * of the first occurrence of the largest value
 	 * @param numbers receives an array
 	 * @return The index of the largest value
 	 */
@@ -71,8 +74,8 @@ public class MathPlus {
 	}
 
 	/**
-	 * Method "sum" receives an array and adds all the values 
-	 * @param numbers receives an array
+	 * Method "sum" adds all the values in the array and returns the total
+	 * @param numbers receives an array of all the integers that needs to be added
 	 * @return The sum of all the values 
 	 */
 	public static int sum(int[]numbers) {
@@ -84,8 +87,9 @@ public class MathPlus {
 	}
 
 	/**
-	 * Method "average" receives an array and gets the average of all the values 
-	 * @param numbers receives an array
+	 * Method "average" receives the total added int array
+	 * and gets the average of the array
+	 * @param numbers receives the total of the int array
 	 * @return The average of all the values 
 	 */
 	public static double average(int[]numbers) {
@@ -95,9 +99,10 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
-	 * @param numbers
-	 * @return
+	 * Method "min" receives an array and finds the index of the first 
+	 * occurrence of the smallest number
+	 * @param numbers receives an array of all the doubles 
+	 * @return returns the index of the smallest value
 	 */
 	public static int min(double [] numbers) {
 		double currentMin=numbers[0];
@@ -115,9 +120,10 @@ public class MathPlus {
 	}
 
 	/**
-	 * 
-	 * @param numbers
-	 * @return
+	 * Method "max" receives an array and finds the index of the first 
+	 * occurrence of the largest number 
+	 * @param numbers receives an array of all the doubles 
+	 * @return returns the index of the largest value
 	 */
 	public static int max(double [] numbers) {
 		double currentMax=numbers[0];
@@ -136,9 +142,9 @@ public class MathPlus {
 	}
 	
 	/**
-	 * 
-	 * @param numbers
-	 * @return
+	 * Method "sum" adds all the doubles and returns the sum
+	 * @param numbers receives an array that has the needed doubles
+	 * @return the sum of all the doubles
 	 */
 	public static double sum(double [] numbers) {
 		int total=0;
@@ -148,13 +154,16 @@ public class MathPlus {
 		return total;
 	}
 	/**
-	 * 
-	 * @param numbers
-	 * @return
+	 * Method "average" receives the total added double array
+	 * and gets the average of the array
+	 * @param numbers receives the total of the array
+	 * @return the average of the array
 	 */
 	public static double average(double [] numbers) {
 		double total=sum(numbers);
 		total/=numbers.length;
 		return total;
 	}
+	
+	
 }
