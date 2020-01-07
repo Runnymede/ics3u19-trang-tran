@@ -2,7 +2,7 @@ package extraChallenges;
 
 import java.util.Scanner;
 
-public class J1CCC {
+public class WinningScore {
 
 	public static void main(String[] args) {
 		Scanner sc= new Scanner(System.in);
