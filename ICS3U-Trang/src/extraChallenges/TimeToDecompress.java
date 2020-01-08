@@ -10,7 +10,7 @@ public class TimeToDecompress {
 	public static void main(String[] args) {
 		Scanner sc= new Scanner(System.in);
 		
-		int lines = Integer.valueOf(sc.nextLine());
+		int lines = sc.nextInt();
 		String [] inputs = new String [lines];
 		
 		for (int i=0; i<lines; i++) {

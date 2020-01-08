@@ -7,6 +7,7 @@ public class ColdCompress {
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		
+		//TODO:do this one 
 		int lines=sc.nextInt();
 		String [] characters= new String [lines];
 		
