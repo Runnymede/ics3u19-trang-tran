@@ -22,18 +22,18 @@ public class MathPlus {
 		System.out.println("Maximum Value: "+max(array));
 		System.out.println("Sum: "+sum(array));
 		System.out.println("Average: "+average(array));
-		
+
 		System.out.println("\nMinimum Value: "+min(array2));
 		System.out.println("Maximum Value: "+max(array2));
 		System.out.println("Sum: "+sum(array2));
 		System.out.println("Average: "+average(array2));
-		
+
 	}
 
 	/**
 	 * Method "min" receives an array and finds the index of 
 	 * the first occurrence of the smallest value
-	 * @param numbers receives an array
+	 * @param numbers - receives an array
 	 * @return The index of the smallest value
 	 */
 	public static int min(int[]numbers) {
@@ -54,7 +54,7 @@ public class MathPlus {
 	/**
 	 * Method "max" receives an array and finds the index 
 	 * of the first occurrence of the largest value
-	 * @param numbers receives an array
+	 * @param numbers - receives an array
 	 * @return The index of the largest value
 	 */
 	public static int max(int[]numbers) {
@@ -75,7 +75,7 @@ public class MathPlus {
 
 	/**
 	 * Method "sum" adds all the values in the array and returns the total
-	 * @param numbers receives an array of all the integers that needs to be added
+	 * @param numbers - receives an array of all the integers that needs to be added
 	 * @return The sum of all the values 
 	 */
 	public static int sum(int[]numbers) {
@@ -89,7 +89,7 @@ public class MathPlus {
 	/**
 	 * Method "average" receives the total added int array
 	 * and gets the average of the array
-	 * @param numbers receives the total of the int array
+	 * @param numbers - receives the total of the int array
 	 * @return The average of all the values 
 	 */
 	public static double average(int[]numbers) {
@@ -97,11 +97,11 @@ public class MathPlus {
 		total/=numbers.length;
 		return total;
 	}
-	
+
 	/**
 	 * Method "min" receives an array and finds the index of the first 
 	 * occurrence of the smallest number
-	 * @param numbers receives an array of all the doubles 
+	 * @param numbers - receives an array of all the doubles 
 	 * @return returns the index of the smallest value
 	 */
 	public static int min(double [] numbers) {
@@ -122,7 +122,7 @@ public class MathPlus {
 	/**
 	 * Method "max" receives an array and finds the index of the first 
 	 * occurrence of the largest number 
-	 * @param numbers receives an array of all the doubles 
+	 * @param numbers - receives an array of all the doubles 
 	 * @return returns the index of the largest value
 	 */
 	public static int max(double [] numbers) {
@@ -140,10 +140,10 @@ public class MathPlus {
 		}
 		return index;
 	}
-	
+
 	/**
 	 * Method "sum" adds all the doubles and returns the sum
-	 * @param numbers receives an array that has the needed doubles
+	 * @param numbers - receives an array that has the needed doubles
 	 * @return the sum of all the doubles
 	 */
 	public static double sum(double [] numbers) {
@@ -156,7 +156,7 @@ public class MathPlus {
 	/**
 	 * Method "average" receives the total added double array
 	 * and gets the average of the array
-	 * @param numbers receives the total of the array
+	 * @param numbers - receives the total of the array
 	 * @return the average of the array
 	 */
 	public static double average(double [] numbers) {
@@ -165,5 +165,67 @@ public class MathPlus {
 		return total;
 	}
 	
+	/**
+	 * Method "median" returns the median value from an array of doubles
+	 * @param numbers - the array of doubles
+	 * @return the median value from the array 
+	 */
+	public static double median(double []numbers) {
+		
+		
+		return 0.0;
+	}
 	
+	/**
+	 * Method "mode" returns the most occurring value in the array
+	 * @param numbers - the array of doubles 
+	 * @return the mode (most occurring) value 
+	 */
+	public static double mode(double []numbers) {
+		
+		return 0.0;
+	}
+	
+	/**
+	 * Method "prime" checks if a number is prime or not
+	 * @param number - the number to be determined prime (or not)
+	 * @return true if the number is prime, false otherwise
+	 */
+	public static boolean prime(int number) {
+		
+		return false;
+	}
+	
+	/**
+	 * Method "factorial" receives a number and determines the factorial 
+	 * of the given number
+	 * @param number - the value that determines the factorial
+	 * @return the factorial of the given number
+	 */
+	public static long factorial(int number) {
+		
+		return number;
+	}
+	
+	/**
+	 * Method "numOfFactors" receives a number and 
+	 * determines the number of factors of the given number
+	 * @param number - the value to be factored
+	 * @return the number of factors
+	 */
+	public static int numOfFactors(int number) {
+		
+		return number;
+	}
+	
+	/**
+	 * Method "factor" receives a number and 
+	 * determines all the factors of the given number
+	 * @param numbers - the value to be factored
+	 * @return all the factors 
+	 */
+	public static int [] factor(int numbers) {
+		
+		return null;
+	}
 }
