@@ -36,6 +36,7 @@ public class Quadratic {
 		System.out.println("Here are your answers: ");
 		System.out.println("Value 1 is: " +value1);
 		System.out.println("Value 2 is: " + value2);
+		
 	}
 
 }
