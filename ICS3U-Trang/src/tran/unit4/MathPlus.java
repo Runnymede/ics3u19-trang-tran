@@ -172,7 +172,6 @@ public class MathPlus {
 	 */
 	public static double median(double []numbers) {
 		
-		
 		return 0.0;
 	}
 	
