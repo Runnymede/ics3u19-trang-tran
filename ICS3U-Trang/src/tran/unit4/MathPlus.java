@@ -1,5 +1,6 @@
 package tran.unit4;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -171,9 +172,16 @@ public class MathPlus {
 	 * @return the median value from the array 
 	 */
 	public static double median(double []numbers) {
+		Arrays.sort(numbers);
+		double finalMedian=0;
 		
-		
-		return 0.0;
+		if (numbers.length%2==0) {
+			finalMedian=(numbers[numbers.length/2]+numbers[numbers.length/2+1])/2;
+		}
+		else {
+			finalMedian=numbers[(int)Math.ceil(numbers.length/2)];
+		}
+		return finalMedian;
 	}
 	
 	/**
