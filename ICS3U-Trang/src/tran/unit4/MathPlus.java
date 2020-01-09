@@ -18,7 +18,8 @@ public class MathPlus {
 
 		int []array= {99,1,5,99,103,1,103,9,107,1,-13,107,111,2,111,10,115,1,115555,5};
 		double[]array2= {2.45,3.90,4.15,5.23,6.56,1.36,7.93,8.35,9.75,10.0,1.36};
-
+		double []array3= {2,8,5,9,1,3,7,6,4,0};
+		
 		System.out.println("Minimum Value: "+min(array));
 		System.out.println("Maximum Value: "+max(array));
 		System.out.println("Sum: "+sum(array));
@@ -28,7 +29,13 @@ public class MathPlus {
 		System.out.println("Maximum Value: "+max(array2));
 		System.out.println("Sum: "+sum(array2));
 		System.out.println("Average: "+average(array2));
-
+		
+		System.out.println("Median: "+median(array3));
+		System.out.println("Mode: "+mode(array3));
+		System.out.println("Prime: "+prime(7));
+		System.out.println("Factorial: "+factorial(6));
+		System.out.println("numOfFactors: "+numOfFactors(20));
+		System.out.println("Factor: "+factor(21));
 	}
 
 	/**
@@ -174,8 +181,10 @@ public class MathPlus {
 	public static double median(double []numbers) {
 		Arrays.sort(numbers);
 		double finalMedian=0;
+		double medianA=Math.floor(numbers.length/2);
+		
 		if (numbers.length%2==0) {
-			finalMedian=(numbers[numbers.length/2]+numbers[numbers.length/2+1])/2;
+			finalMedian=(numbers[(int) medianA]+numbers[(int)medianA-1])/2;
 		}
 		else {
 			finalMedian=numbers[(int)Math.ceil(numbers.length/2)];
@@ -189,6 +198,7 @@ public class MathPlus {
 	 * @return the mode (most occurring) value 
 	 */
 	public static double mode(double []numbers) {
+		Arrays.sort(numbers);
 		
 		return 0.0;
 	}
