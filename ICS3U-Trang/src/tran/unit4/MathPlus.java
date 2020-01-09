@@ -32,8 +32,8 @@ public class MathPlus {
 		
 		System.out.println("Median: "+median(array3));
 		System.out.println("Mode: "+mode(array3));
-		System.out.println("Prime: "+prime(7));
-		System.out.println("Factorial: "+factorial(6));
+		System.out.println("Prime: "+prime(97));
+		System.out.println("Factorial: "+factorial(5));
 		System.out.println("numOfFactors: "+numOfFactors(20));
 		System.out.println("Factor: "+factor(21));
 	}
@@ -209,7 +209,20 @@ public class MathPlus {
 	 * @return true if the number is prime, false otherwise
 	 */
 	public static boolean prime(int number) {
+		int modulus=1;
+		int numberCounter=2;
 		
+		while(modulus!=0 && (numberCounter!=number)){
+			if (number==1||number==2) {
+				modulus=0;
+			}
+			modulus=number%numberCounter;
+			numberCounter++;
+		}
+		if (modulus!=0)
+		{
+			return true;//prime
+		}
 		return false;
 	}
 	
@@ -220,8 +233,12 @@ public class MathPlus {
 	 * @return the factorial of the given number
 	 */
 	public static long factorial(int number) {
+		int product=0;
 		
-		return number;
+		while (number!=0) {
+			product*=number-1;
+		}
+		return product;
 	}
 	
 	/**
