@@ -15,7 +15,7 @@ public class MathPlus {
 	 */
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
-
+		
 		int []array= {99,1,5,99,103,1,103,9,107,1,-13,107,111,2,111,10,115,1,115555,5};
 		double[]array2= {2.45,3.90,4.15,5.23,6.56,1.36,7.93,8.35,9.75,10.0,1.36};
 		double []array3= {2,8,5,9,1,3,7,6,4,0};
@@ -33,7 +33,7 @@ public class MathPlus {
 		System.out.println("Median: "+median(array3));
 		System.out.println("Mode: "+mode(array3));
 		System.out.println("Prime: "+prime(97));
-		System.out.println("Factorial: "+factorial(5));
+		System.out.println("Factorial: "+factorial(number));
 		System.out.println("numOfFactors: "+numOfFactors(20));
 		System.out.println("Factor: "+factor(21));
 	}
@@ -248,8 +248,13 @@ public class MathPlus {
 	 * @return the number of factors
 	 */
 	public static int numOfFactors(int number) {
-		
-		return number;
+		int factorCounter=0;
+		for (int i=1;i<number;i++) {
+			if (number%i==0) {
+				factorCounter++;
+			}
+		}
+		return factorCounter;
 	}
 	
 	/**
@@ -259,7 +264,19 @@ public class MathPlus {
 	 * @return all the factors 
 	 */
 	public static int [] factor(int numbers) {
-		
-		return null;
+		int factorIndex=0;
+		int [] factorArray= new int [numbers];
+	
+		for (int i=1;i<numbers;i++) {
+			if (prime(numbers)==true) {
+				factorArray[0]= 1;
+				factorArray[1]=numbers;
+			}
+			if (numbers%i==0) {
+				factorArray[factorIndex]=i;
+				factorIndex++;
+			}
+		}
+		return factorArray;
 	}
 }
