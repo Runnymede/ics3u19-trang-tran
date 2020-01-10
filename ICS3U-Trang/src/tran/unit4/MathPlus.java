@@ -19,21 +19,23 @@ public class MathPlus {
 		int []array= {99,1,5,99,103,1,103,9,107,1,-13,107,111,2,111,10,115,1,115555,5};
 		double[]array2= {2.45,3.90,4.15,5.23,6.56,1.36,7.93,8.35,9.75,10.0,1.36};
 		double []array3= {2,8,5,9,1,3,7,6,4,0};
+		int number=5;
 		
-		System.out.println("Minimum Value: "+min(array));
-		System.out.println("Maximum Value: "+max(array));
+		System.out.println("Minimum Index: "+min(array));
+		System.out.println("Maximum Index: "+max(array));
 		System.out.println("Sum: "+sum(array));
 		System.out.println("Average: "+average(array));
-
-		System.out.println("\nMinimum Value: "+min(array2));
-		System.out.println("Maximum Value: "+max(array2));
+	
+		System.out.println("\nMinimum Index: "+min(array2));
+		System.out.println("Maximum Index: "+max(array2));
 		System.out.println("Sum: "+sum(array2));
 		System.out.println("Average: "+average(array2));
 		
-		System.out.println("Median: "+median(array3));
-		System.out.println("Mode: "+mode(array3));
+		System.out.println("\nMedian: "+median(array3));
+//		System.out.println("Mode: "+mode(array3));
 		System.out.println("Prime: "+prime(97));
-		System.out.println("Factorial: "+factorial(number));
+		
+		System.out.println("Factorial: "+factorial(5));
 		System.out.println("numOfFactors: "+numOfFactors(20));
 		System.out.println("Factor: "+factor(21));
 	}
@@ -199,8 +201,26 @@ public class MathPlus {
 	 */
 	public static double mode(double []numbers) {
 		Arrays.sort(numbers);
+		int oldCounter=1;//keep track of how many recurrences
+		int newCounter=0;//keep track of index
+		double modeValue=0;
+		int m;
 		
-		return 0.0;
+		for (int i=0;i<numbers.length;i++) {
+			if (numbers[i]==numbers[i+1]) {
+				newCounter+=1;
+				modeValue=numbers[i];
+			}
+			else {
+				if (oldCounter<newCounter) {
+					
+				}
+				oldCounter=newCounter;
+			}
+		}
+		
+		
+		return modeValue;
 	}
 	
 	/**
