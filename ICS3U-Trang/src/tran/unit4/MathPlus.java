@@ -19,7 +19,7 @@ public class MathPlus {
 		int []array= {99,1,5,99,103,1,103,9,107,1,-13,107,111,2,111,10,115,1,115555,5};
 		double[]array2= {2.45,3.90,4.15,5.23,6.56,1.36,7.93,8.35,9.75,10.0,1.36};
 		double []array3= {2,8,5,9,1,3,7,6,4,0};
-		int number=5;
+		int number=24;
 		
 		System.out.println("Minimum Index: "+min(array));
 		System.out.println("Maximum Index: "+max(array));
@@ -31,13 +31,20 @@ public class MathPlus {
 		System.out.println("Sum: "+sum(array2));
 		System.out.println("Average: "+average(array2));
 		
+		
 		System.out.println("\nMedian: "+median(array3));
-//		System.out.println("Mode: "+mode(array3));
+		System.out.println("Mode: "+mode(array3));
 		System.out.println("Prime: "+prime(97));
 		
-		System.out.println("Factorial: "+factorial(5));
-		System.out.println("numOfFactors: "+numOfFactors(20));
-		System.out.println("Factor: "+factor(21));
+		System.out.println("Factorial: "+factorial(6));
+		System.out.println("numOfFactors: "+numOfFactors(number));
+		System.out.print("Factors of "+number+": ");
+		for (int i=0; i<factor(number).length;i++) {
+			if (factor(24)[i]!=0) {
+				System.out.print(factor(number)[i]+", ");
+			}
+		}
+	
 	}
 
 	/**
@@ -201,24 +208,22 @@ public class MathPlus {
 	 */
 	public static double mode(double []numbers) {
 		Arrays.sort(numbers);
-		int oldCounter=1;//keep track of how many recurrences
-		int newCounter=0;//keep track of index
+		int currentCounter=0;//keep track of how many recurrences
+		int modeCounter=0;
 		double modeValue=0;
-		int m;
 		
 		for (int i=0;i<numbers.length;i++) {
-			if (numbers[i]==numbers[i+1]) {
-				newCounter+=1;
-				modeValue=numbers[i];
-			}
-			else {
-				if (oldCounter<newCounter) {
-					
+			for(int a=0;a<numbers.length;a++) {
+				if (numbers[i]==numbers[a]) {
+					currentCounter++;
 				}
-				oldCounter=newCounter;
+				
+				if (currentCounter>modeCounter) {
+					modeCounter=currentCounter;
+					modeValue=numbers[i];
+				}
 			}
 		}
-		
 		
 		return modeValue;
 	}
@@ -253,11 +258,13 @@ public class MathPlus {
 	 * @return the factorial of the given number
 	 */
 	public static long factorial(int number) {
-		int product=0;
+		int product=1;
 		
 		while (number!=0) {
-			product*=number-1;
+			product*=number;
+			number-=1;
 		}
+		
 		return product;
 	}
 	
@@ -269,7 +276,7 @@ public class MathPlus {
 	 */
 	public static int numOfFactors(int number) {
 		int factorCounter=0;
-		for (int i=1;i<number;i++) {
+		for (int i=1;i<=number;i++) {
 			if (number%i==0) {
 				factorCounter++;
 			}
@@ -287,7 +294,7 @@ public class MathPlus {
 		int factorIndex=0;
 		int [] factorArray= new int [numbers];
 	
-		for (int i=1;i<numbers;i++) {
+		for (int i=1;i<=numbers;i++) {
 			if (prime(numbers)==true) {
 				factorArray[0]= 1;
 				factorArray[1]=numbers;
@@ -297,6 +304,7 @@ public class MathPlus {
 				factorIndex++;
 			}
 		}
+		
 		return factorArray;
 	}
 }
