@@ -20,10 +20,23 @@ public class Mancala {
 		String playerAnswer;
 		int index=0;
 		
-		c.println("Mancala");
+		c.println("MANCALA");
+		c.println("If you don't know what this game is, it's a board game. ");
+		c.println("The game has a board with 14 holes. "
+				+ "Two big holes at the ends (called the Mancala) and "
+				+ "12 small holes lined in two rows in the middle. "
+				+ "In every hole in the middle, there are 4 beads. "
+				+ "In total, there are 48 beads. These beads are used "
+				+ "to score and keep the game going. \r\n");
+		c.println("*************************************************************");
+		c.println("RULES:");
+		c.println("");
+		c.println("SPECIAL RULES:");
+		c.println("");
 		c.println("Do you want to play?");
 		playerAnswer=c.readLine();
-		
+		 
+		Thread.sleep (1000/30);
 		do {
 			while (gameOver(playerHoles)==false) {
 				if (playerTurn==true) {
