@@ -33,10 +33,10 @@ public class Mancala {
 					dropBeads(playerHoles, index);
 					
 					if (playAgain(playerHoles)==true) {
-						
+						playerTurn=true;
 					}
 					else {
-
+						playerTurn=false;
 					}
 				}
 				else {
@@ -46,10 +46,10 @@ public class Mancala {
 					dropBeads(playerHoles, index);
 					
 					if (playAgain(playerHoles)==true) {
-
+						playerTurn=false;
 					}
 					else {
-
+						playerTurn=true;
 					}
 				}
 			}
