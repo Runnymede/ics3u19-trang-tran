@@ -1,7 +1,6 @@
 package tran.culminating;
 import java.awt.*;
 import hsa_new.Console;
-import java.awt.color.*;
 
 /**
  * ICS3U Culminating game program 
@@ -10,20 +9,27 @@ import java.awt.color.*;
  * @author Trang Tran
  */
 public class Mancala {
+
+	//Global Variables
 	static Console c = new Console (44, 156, "Mancala");
 	static boolean playerTurn=true;
-	static Color brown = new Color(200, 100, 30)
-;	/**
+	static int [] scores= {0,0};
+	static int [] playerHoles= {4,4,4,4,4,4,0,4,4,4,4,4,4,0};
+	static Color woodBrown = new Color(222, 184, 135);
+	static Color tan = new Color(212, 174, 125);
+	static Font fontTitle=new Font("Times New Roman", Font.PLAIN, 90);
+
+	;	/**
 	 * Start of the program
 	 * @param args
 	 */
 	public static void main(String[] args)  throws InterruptedException{
-		int [] playerHoles= {4,4,4,4,4,4,0,4,4,4,4,4,4,0};
+
 		String playerAnswer;
 		int index=0;
-		
+
 		//Introduction to the game and asks the user if the want to play
-		c.println("MANCALA", 24);
+		c.println("Mancala");
 		c.println("If you don't know what this game is, it's a board game. "
 				+ "The game has a board with 14 holes.");
 		c.print("Two big holes at the ends (called the Mancala) and "
@@ -52,32 +58,42 @@ public class Mancala {
 		playerAnswer=c.readLine();
 		Thread.sleep (1000/30);
 		c.clear();
-		
+
 		//Repeat the game code if the user wants to play again
-		do {
+		while(playerAnswer.equalsIgnoreCase("yes")) {
 			while (gameOver(playerHoles)==false) {
 				if (playerTurn==true) {
+					//Player 1's holes would be the bottom row and scoring will be right
 					drawScreen(playerHoles);
 					c.println("Which hole will you take the beads out of?");
 					index=c.readInt();
+					if (index==7||index==8||index==9||index==10||index==11||index==12||index==13) {
+						c.println("Why are you trying to cheat???? Enter another hole: ");
+						index=c.readInt();
+					}
 					dropBeads(playerHoles, index);
-					
+
 					if (playTurnAgain(playerHoles)==true) {
 						playerTurn=true;
 					}
 					else {
 						playerTurn=false;
 					}
-					
+
 					c.clear();
-					
+
 				}
 				else {
+					//Player 2's holes would be the top row and scoring will be left
 					drawScreen(playerHoles);
 					c.println("Which hole will you take the beads out of?");
 					index=c.readInt();
+					if (index==0||index==1||index==2||index==3||index==4||index==5||index==6) {
+						c.println("Why are you trying to cheat???? Enter another hole: ");
+						index=c.readInt();
+					}
 					dropBeads(playerHoles, index);
-					
+
 					if (playTurnAgain(playerHoles)==true) {
 						playerTurn=false;
 					}
@@ -87,14 +103,14 @@ public class Mancala {
 					c.clear();
 				}
 			}
-			
+
 			drawScreen (playerHoles);
 			c.println("Do you want to play again?");
 			playerAnswer=c.readLine();
 			Thread.sleep(3000);
 			c.clear();
-		}while(playerAnswer.equalsIgnoreCase("yes"));
-		
+		}
+
 		System.out.println("Come back when you wanna play again!");
 		Thread.sleep(5000);
 		c.close();
@@ -106,9 +122,11 @@ public class Mancala {
 	 * @param holes - the array that stores the amount of beads in every hole
 	 */
 	public static void drawScreen(int [] holes) {
-		c.fillRect(8,9,20,10);
-		c.setColor(brown);
-		
+		c.setColor(woodBrown);
+		c.fillRect(20,200,1190,400);
+		c.setColour(tan);
+		c.fillOval(28,235, 150, 325);
+
 	}
 
 	/**
@@ -121,10 +139,42 @@ public class Mancala {
 	 */
 	public static void dropBeads(int [] holes, int index) {
 		int maxBeads=holes[index];
+		int lastIndex=0, curerntIndex;
 		holes[index]=0;
-		for (int i=index+1;i<=maxBeads;i++) {
-			holes[i]+=1;
+
+		//Sowing the beads
+		for (curerntIndex=index+1;curerntIndex<=maxBeads;curerntIndex++) {
+
+			//skip player 2's Mancala when it's player 1's turn & vise versa
+			if (playerTurn==true&&curerntIndex==13) {
+				curerntIndex=1;
+			}
+			if (playerTurn==false&&curerntIndex==6) {
+				curerntIndex=7;
+			}
+
+			//keep sowing if it reaches hole 13
+			if (curerntIndex==13) {
+				curerntIndex=1;
+			}
+
+			//add the score when a bead lands in a players mancala
+			if (playerTurn==true&&curerntIndex==6) {
+				scores[0]+=1;
+			}
+			if (playerTurn==false&&curerntIndex==13) {
+				scores[1]+=1;
+			}
+
+			holes[curerntIndex]+=1;
+			lastIndex=curerntIndex;
 		}
+
+		//call the capture method if the last bead ends in a hole that was previously empty
+		if (holes[lastIndex]==1) {
+			capture(lastIndex);
+		}
+
 	}
 
 	/**
@@ -132,10 +182,26 @@ public class Mancala {
 	 * bead of a player's turn moves to an empty hole on their side, the player 
 	 * is able to capture the beads directly parallel to that hole.
 	 * @param index1 - the hole that the user chose to take all the beads out of
-	 * @param index2 - the hole directly opposite to the hole the user chose
 	 */
-	public static void capture(int index1, int index2) {
-		
+	public static void capture(int index1) {
+		if (playerTurn==true) {
+			if (index1==0) {
+				scores[0]+=playerHoles[12];
+			}
+			else if (index1==1) {
+
+			}
+			else if (index1==1) {
+
+			}
+			else if (index1==1) {
+
+			}
+		}
+		else {
+
+		}
+
 	}
 
 	/**
