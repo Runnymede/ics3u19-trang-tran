@@ -12,8 +12,8 @@ import java.awt.color.*;
 public class Mancala {
 	static Console c = new Console (44, 156, "Mancala");
 	static boolean playerTurn=true;
-
-	/**
+	static Color brown = new Color(200, 100, 30)
+;	/**
 	 * Start of the program
 	 * @param args
 	 */
@@ -106,7 +106,8 @@ public class Mancala {
 	 * @param holes
 	 */
 	public static void drawScreen(int [] holes) {
-		c.drawRect(8,9,20,10);
+		c.fillRect(8,9,20,10);
+		c.setColor(brown);
 		
 	}
 
