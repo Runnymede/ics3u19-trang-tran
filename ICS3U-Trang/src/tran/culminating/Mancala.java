@@ -37,7 +37,7 @@ public class Mancala {
 		c.println("2. The mancala on your right is your scoring and the row of holes nearest to you is your side");
 		c.println("3. The game begins with one player picking up all of the beads in any one of the holes on their side");
 		c.println("4. The player deposits one stone in the next hole and the hole after that, in a counter-clockwise motion, until the stones run out.");
-		c.println("5. You’re not allowed to take beads from your opponent's side");
+		c.println("5. You're not allowed to take beads from your opponent's side");
 		c.println("6. Your own Mancala counts as a hole but your opponent's Mancala does not count, so skip it and continue moving to the next holes");
 		c.println("7. Always place all captured beads in your Mancala");
 		c.println("8. The game ends when all six holes on a player's side of the Mancala board are empty");
@@ -58,12 +58,11 @@ public class Mancala {
 			while (gameOver(playerHoles)==false) {
 				if (playerTurn==true) {
 					drawScreen(playerHoles);
-					c.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 					c.println("Which hole will you take the beads out of?");
 					index=c.readInt();
 					dropBeads(playerHoles, index);
 					
-					if (playAgain(playerHoles)==true) {
+					if (playTurnAgain(playerHoles)==true) {
 						playerTurn=true;
 					}
 					else {
@@ -79,7 +78,7 @@ public class Mancala {
 					index=c.readInt();
 					dropBeads(playerHoles, index);
 					
-					if (playAgain(playerHoles)==true) {
+					if (playTurnAgain(playerHoles)==true) {
 						playerTurn=false;
 					}
 					else {
@@ -102,8 +101,9 @@ public class Mancala {
 	}
 
 	/**
-	 * Method "drawScreen" will draw the Mancala board after each turn.
-	 * @param holes
+	 * Method "drawScreen" will draw the Mancala board, print the score board
+	 * and print the player turn indication board after each turn.
+	 * @param holes - the array that stores the amount of beads in every hole
 	 */
 	public static void drawScreen(int [] holes) {
 		c.drawRect(8,9,20,10);
@@ -111,9 +111,12 @@ public class Mancala {
 	}
 
 	/**
-	 * 
-	 * @param holes
-	 * @param index
+	 * Method "dropBeads" will deposit one stone in the next hole in a 
+	 * counter-clockwise motion(after the hole the user chose). This method 
+	 * will also keep track of where the last bead is deposited. 
+	 * This method will also call playerTurnAgain and capture.
+	 * @param holes - the array that stores the amount of beads in every hole
+	 * @param index - the hole that the user chose to take all the beads out of
 	 */
 	public static void dropBeads(int [] holes, int index) {
 		int maxBeads=holes[index];
@@ -124,18 +127,21 @@ public class Mancala {
 	}
 
 	/**
-	 * 
-	 * @param index1
-	 * @param index2
+	 * Method "capture" follows the "capturing" process of the game. If the last
+	 * bead of a player's turn moves to an empty hole on their side, the player 
+	 * is able to capture the beads directly parallel to that hole.
+	 * @param index1 - the hole that the user chose to take all the beads out of
+	 * @param index2 - the hole directly opposite to the hole the user chose
 	 */
 	public static void capture(int index1, int index2) {
 		
 	}
 
 	/**
-	 * 
-	 * @param holes
-	 * @return
+	 * Method "gameOver" checks whether a player's side has no beads. 
+	 * This indicates a game over according to the rules.
+	 * @param holes - the array that stores the amount of beads in every hole
+	 * @return true when the game is over 
 	 */
 	public static boolean gameOver(int [] holes) {
 
@@ -143,11 +149,12 @@ public class Mancala {
 	}
 
 	/**
-	 * 
-	 * @param holes
-	 * @return
+	 * Method "playTurnAgain" checks whether the last bead moved to the mancala. 
+	 * This allows the player to have an extra turn.
+	 * @param holes - the array that stores the amount of beads in every hole
+	 * @return true if the last bead moved to the mancala.
 	 */
-	public static boolean playAgain(int [] holes) {
+	public static boolean playTurnAgain(int [] holes) {
 
 		return true;
 	}
