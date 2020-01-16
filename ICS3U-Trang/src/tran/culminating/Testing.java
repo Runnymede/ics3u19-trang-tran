@@ -3,8 +3,7 @@ package tran.culminating;
 import java.util.Scanner;
 /**
  * This program is meant for testing the logistics of Mancala without 
- * the graphics. All aspects of the code (escept graphics) will be tested in here 
- * and transfered to the final game.
+ * the graphics. 
  * Date: January 15, 2020
  * @author Trang Tran
  */
@@ -44,16 +43,7 @@ public class Testing {
 						System.out.println("Why are you trying to cheat???? Enter another hole: ");
 						index=sc.nextInt();
 					}
-					dropBeads(index);
-
-					//checks if they get another turn
-					if (playTurnAgain()==true) {
-						playerTurn=true;
-					}
-					else {
-						playerTurn=false;
-					}
-
+					turns(dropBeads(index));
 
 				}
 				else {
@@ -65,15 +55,7 @@ public class Testing {
 						System.out.println("Why are you trying to cheat???? Enter another hole: ");
 						index=sc.nextInt();
 					}
-					dropBeads(index);
-
-					//checks if they get another turn
-					if (playTurnAgain()==true) {
-						playerTurn=false;
-					}
-					else {
-						playerTurn=true;
-					}
+					turns(dropBeads(index));
 
 				}
 
@@ -102,7 +84,7 @@ public class Testing {
 	 * This method will also call playerTurnAgain and capture.
 	 * @param index - the hole that the user chose to take all the beads out of
 	 */
-	public static void dropBeads(int index) {
+	public static int dropBeads(int index) {
 		int maxBeads=mancalaHoles[index];
 		int lastIndex=0;
 		mancalaHoles[index]=0;
@@ -110,7 +92,6 @@ public class Testing {
 
 		//depositing the beads
 		for (int currentIndex=index+1;counter<=maxBeads;currentIndex++) {
-			System.out.println("TEST"+currentIndex);
 
 			//skip player 2's mancala when it's player 1's turn & vice versa
 			if (playerTurn==true&&currentIndex==13) {
@@ -139,19 +120,17 @@ public class Testing {
 			if (playerTurn==true&&currentIndex==6) {
 				scores[0]+=1;
 			}
-
 			//counts how many iterations it has done and compares to max of the beads
 			counter++;
 		}
-
-		//call the capture method if the last bead ends in a hole that was previously empty
+		
 		if (mancalaHoles[lastIndex]==1) {
 			capture(lastIndex);
 		}
-
+		
+		return lastIndex;
 	}
 
-	//TODO: fix the capture aspect
 	/**
 	 * Method "capture" follows the "capturing" process of the game. If the last
 	 * bead of a player's turn moves to an empty hole on their side, the player 
@@ -161,25 +140,84 @@ public class Testing {
 	public static void capture(int index1) {
 		if (playerTurn==true) {
 			if (index1==0) {
-				scores[0]+=mancalaHoles[12];
+				scores[0]+=mancalaHoles[12]+1;
+				mancalaHoles[6]+=mancalaHoles[12]+1;
+				mancalaHoles[12]=0;
+				mancalaHoles[0]=0;
+				
 			}
 			else if (index1==1) {
-
+				scores[0]+=mancalaHoles[11]+1;
+				mancalaHoles[6]+=mancalaHoles[11]+1;
+				mancalaHoles[11]=0;
+				mancalaHoles[1]=0;
 			}
-			else if (index1==1) {
-
+			else if (index1==2) {
+				scores[0]+=mancalaHoles[10]+1;
+				mancalaHoles[6]+=mancalaHoles[10]+1;
+				mancalaHoles[2]=0;
+				mancalaHoles[10]=0;
 			}
-			else if (index1==1) {
-
+			else if (index1==3) {
+				scores[0]+=mancalaHoles[9]+1;
+				mancalaHoles[6]+=mancalaHoles[9]+1;
+				mancalaHoles[3]=0;
+				mancalaHoles[9]=0;
+			}
+			else if (index1==4) {
+				scores[0]+=mancalaHoles[8]+1;
+				mancalaHoles[6]+=mancalaHoles[8]+1;
+				mancalaHoles[4]=0;
+				mancalaHoles[8]=0;
+			}
+			else if (index1==5) {
+				scores[0]+=mancalaHoles[7]+1;
+				mancalaHoles[6]+=mancalaHoles[7]+1;
+				mancalaHoles[5]=0;
+				mancalaHoles[7]=0;
 			}
 		}
 		else {
-
+			if (index1==7) {
+				scores[1]+=mancalaHoles[5]+1;
+				mancalaHoles[13]+=mancalaHoles[5]+1;
+				mancalaHoles[5]=0;
+				mancalaHoles[7]=0;
+			}
+			else if (index1==8) {
+				scores[1]+=mancalaHoles[4]+1;
+				mancalaHoles[13]+=mancalaHoles[4]+1;
+				mancalaHoles[4]=0;
+				mancalaHoles[8]=0;
+			}
+			else if (index1==9) {
+				scores[1]+=mancalaHoles[3]+1;
+				mancalaHoles[13]+=mancalaHoles[3]+1;
+				mancalaHoles[3]=0;
+				mancalaHoles[9]=0;
+			}
+			else if (index1==10) {
+				scores[1]+=mancalaHoles[2]+1;
+				mancalaHoles[13]+=mancalaHoles[2]+1;
+				mancalaHoles[2]=0;
+				mancalaHoles[10]=0;
+			}
+			else if (index1==11) {
+				scores[1]+=mancalaHoles[1]+1;
+				mancalaHoles[13]+=mancalaHoles[1]+1;
+				mancalaHoles[11]=0;
+				mancalaHoles[1]=0;
+			}
+			else if (index1==12) {
+				scores[1]+=mancalaHoles[0]+1;
+				mancalaHoles[13]+=mancalaHoles[0]+1;
+				mancalaHoles[12]=0;
+				mancalaHoles[0]=0;
+			}
 		}
 
 	}
 
-	//TODO: test this gameOver sequence
 	/**
 	 * Method "gameOver" checks whether a player's side has no beads. 
 	 * This indicates a game over according to the rules.
@@ -197,15 +235,29 @@ public class Testing {
 		return false;
 	}
 
-	//TODO: Figure how to incorporate this method. **NEED LAST INDEX**
+	//TODO: fix again sequence
 	/**
-	 * Method "playTurnAgain" checks whether the last bead moved to the mancala. 
+	 * Method "turns" switches the turns and
+	 * checks whether the last bead moved to the mancala. 
 	 * This allows the player to have an extra turn.
-	 * @param holes - the array that stores the amount of beads in every hole
-	 * @return true if the last bead moved to the mancala.
+	 * @param lastIndex - 
 	 */
-	public static boolean playTurnAgain(int lastIndex) {
+	public static void turns(int lastIndex) {
 		
-		return false;
+		//if the last bead lands in the mancala, the player goes again
+		if (playerTurn==true&&lastIndex==6) {
+			playerTurn=true;
+		}
+		else if (playerTurn==false&&lastIndex==13) {
+			playerTurn=false;
+		}
+		
+		//Switch the players
+		if (playerTurn==true) {
+			playerTurn=false;
+		}
+		else {
+			playerTurn=true;
+		}
 	}
 }
