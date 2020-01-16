@@ -14,7 +14,7 @@ public class Mancala {
 	static Console c = new Console (44, 156, "Mancala");
 	static boolean playerTurn=true;
 	static int [] scores= {0,0};
-	static int [] playerHoles= {4,4,4,4,4,4,0,4,4,4,4,4,4,0};
+	static int [] mancalaHoles= {4,4,4,4,4,4,0,4,4,4,4,4,4,0};
 	static Color woodBrown = new Color(222, 184, 135);
 	static Color tan = new Color(212, 174, 125);
 	static Font fontTitle=new Font("Times New Roman", Font.PLAIN, 90);
@@ -61,19 +61,19 @@ public class Mancala {
 
 		//Repeat the game code if the user wants to play again
 		while(playerAnswer.equalsIgnoreCase("yes")) {
-			while (gameOver(playerHoles)==false) {
+			while (gameOver(mancalaHoles)==false) {
+				drawScreen(mancalaHoles);
+				
 				if (playerTurn==true) {
-					//Player 1's holes would be the bottom row and scoring will be right
-					drawScreen(playerHoles);
 					c.println("Which hole will you take the beads out of?");
 					index=c.readInt();
-					if (index==7||index==8||index==9||index==10||index==11||index==12||index==13) {
+					while (index==7||index==8||index==9||index==10||index==11||index==12||index==13||index==6) {
 						c.println("Why are you trying to cheat???? Enter another hole: ");
 						index=c.readInt();
 					}
-					dropBeads(playerHoles, index);
+					dropBeads(index);
 
-					if (playTurnAgain(playerHoles)==true) {
+					if (playTurnAgain(mancalaHoles)==true) {
 						playerTurn=true;
 					}
 					else {
@@ -84,17 +84,15 @@ public class Mancala {
 
 				}
 				else {
-					//Player 2's holes would be the top row and scoring will be left
-					drawScreen(playerHoles);
 					c.println("Which hole will you take the beads out of?");
 					index=c.readInt();
-					if (index==0||index==1||index==2||index==3||index==4||index==5||index==6) {
+					while (index==0||index==1||index==2||index==3||index==4||index==5||index==6||index==13) {
 						c.println("Why are you trying to cheat???? Enter another hole: ");
 						index=c.readInt();
 					}
-					dropBeads(playerHoles, index);
+					dropBeads(index);
 
-					if (playTurnAgain(playerHoles)==true) {
+					if (playTurnAgain(mancalaHoles)==true) {
 						playerTurn=false;
 					}
 					else {
@@ -103,8 +101,14 @@ public class Mancala {
 					c.clear();
 				}
 			}
-
-			drawScreen (playerHoles);
+			
+			if (scores[0]>scores[1]) {
+				System.out.println("PLAYER 1 WINS!!");
+			}
+			else {
+				System.out.println("PLAYER 2 WINS!!");
+			}
+			drawScreen (mancalaHoles);
 			c.println("Do you want to play again?");
 			playerAnswer=c.readLine();
 			Thread.sleep(3000);
@@ -137,41 +141,50 @@ public class Mancala {
 	 * @param holes - the array that stores the amount of beads in every hole
 	 * @param index - the hole that the user chose to take all the beads out of
 	 */
-	public static void dropBeads(int [] holes, int index) {
-		int maxBeads=holes[index];
-		int lastIndex=0, curerntIndex;
-		holes[index]=0;
+	public static void dropBeads( int index) {
+		int maxBeads=mancalaHoles[index];
+		int lastIndex=0;
+		mancalaHoles[index]=0;
+		int counter=1;
 
-		//Sowing the beads
-		for (curerntIndex=index+1;curerntIndex<=maxBeads;curerntIndex++) {
-
-			//skip player 2's Mancala when it's player 1's turn & vise versa
-			if (playerTurn==true&&curerntIndex==13) {
-				curerntIndex=1;
+		//depositing the beads
+		for (int currentIndex=index+1;counter<=maxBeads;currentIndex++) {
+			System.out.println("TEST"+currentIndex);
+			
+			//skip player 2's mancala when it's player 1's turn & vice versa
+			if (playerTurn==true&&currentIndex==13) {
+				currentIndex=1;
 			}
-			if (playerTurn==false&&curerntIndex==6) {
-				curerntIndex=7;
+			if (playerTurn==false&&currentIndex==6) {
+				currentIndex=7;
 			}
 
 			//keep sowing if it reaches hole 13
-			if (curerntIndex==13) {
-				curerntIndex=1;
+			if (currentIndex==13) {
+				mancalaHoles[13]+=1;
+				
+				//Player 2 scores a point
+				if (playerTurn==false&&currentIndex==13) {
+					scores[1]+=1;
+				}
+				counter++;
+				currentIndex=0;
 			}
-
-			//add the score when a bead lands in a players mancala
-			if (playerTurn==true&&curerntIndex==6) {
+			
+			mancalaHoles[currentIndex]+=1;      
+			lastIndex=currentIndex;
+			
+			//add the score when a bead lands in a player 1's mancala
+			if (playerTurn==true&&currentIndex==6) {
 				scores[0]+=1;
 			}
-			if (playerTurn==false&&curerntIndex==13) {
-				scores[1]+=1;
-			}
-
-			holes[curerntIndex]+=1;
-			lastIndex=curerntIndex;
+			
+			//counts how many iterations it has done and compares to max of the beads
+			counter++;
 		}
-
+		
 		//call the capture method if the last bead ends in a hole that was previously empty
-		if (holes[lastIndex]==1) {
+		if (mancalaHoles[lastIndex]==1) {
 			capture(lastIndex);
 		}
 
@@ -186,16 +199,16 @@ public class Mancala {
 	public static void capture(int index1) {
 		if (playerTurn==true) {
 			if (index1==0) {
-				scores[0]+=playerHoles[12];
+				scores[0]+=mancalaHoles[12];
 			}
 			else if (index1==1) {
-
+				
 			}
 			else if (index1==1) {
-
+				
 			}
 			else if (index1==1) {
-
+				
 			}
 		}
 		else {
@@ -211,7 +224,12 @@ public class Mancala {
 	 * @return true when the game is over 
 	 */
 	public static boolean gameOver(int [] holes) {
-
+		if (holes[0]==0&&holes[1]==0&&holes[2]==0&&holes[3]==0&&holes[4]==0&&holes[5]==0) {
+			return true;
+		}
+		if (holes[7]==0&&holes[8]==0&&holes[9]==0&&holes[10]==0&&holes[11]==0&&holes[12]==0){
+			return true;
+		}
 		return false;
 	}
 
