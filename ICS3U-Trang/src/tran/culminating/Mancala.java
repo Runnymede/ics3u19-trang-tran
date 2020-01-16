@@ -179,31 +179,38 @@ public class Mancala {
 		if (playerTurn==true) {
 			if (index1==0) {
 				scores[0]+=mancalaHoles[12]+1;
+				mancalaHoles[6]+=mancalaHoles[12]+1;
 				mancalaHoles[12]=0;
 				mancalaHoles[0]=0;
+				
 			}
 			else if (index1==1) {
 				scores[0]+=mancalaHoles[11]+1;
+				mancalaHoles[6]+=mancalaHoles[11]+1;
 				mancalaHoles[11]=0;
 				mancalaHoles[1]=0;
 			}
 			else if (index1==2) {
 				scores[0]+=mancalaHoles[10]+1;
+				mancalaHoles[6]+=mancalaHoles[10]+1;
 				mancalaHoles[2]=0;
 				mancalaHoles[10]=0;
 			}
 			else if (index1==3) {
 				scores[0]+=mancalaHoles[9]+1;
+				mancalaHoles[6]+=mancalaHoles[9]+1;
 				mancalaHoles[3]=0;
 				mancalaHoles[9]=0;
 			}
 			else if (index1==4) {
 				scores[0]+=mancalaHoles[8]+1;
+				mancalaHoles[6]+=mancalaHoles[8]+1;
 				mancalaHoles[4]=0;
 				mancalaHoles[8]=0;
 			}
 			else if (index1==5) {
 				scores[0]+=mancalaHoles[7]+1;
+				mancalaHoles[6]+=mancalaHoles[7]+1;
 				mancalaHoles[5]=0;
 				mancalaHoles[7]=0;
 			}
@@ -211,31 +218,37 @@ public class Mancala {
 		else {
 			if (index1==7) {
 				scores[1]+=mancalaHoles[5]+1;
+				mancalaHoles[13]+=mancalaHoles[5]+1;
 				mancalaHoles[5]=0;
 				mancalaHoles[7]=0;
 			}
 			else if (index1==8) {
 				scores[1]+=mancalaHoles[4]+1;
+				mancalaHoles[13]+=mancalaHoles[4]+1;
 				mancalaHoles[4]=0;
 				mancalaHoles[8]=0;
 			}
 			else if (index1==9) {
 				scores[1]+=mancalaHoles[3]+1;
+				mancalaHoles[13]+=mancalaHoles[3]+1;
 				mancalaHoles[3]=0;
 				mancalaHoles[9]=0;
 			}
 			else if (index1==10) {
 				scores[1]+=mancalaHoles[2]+1;
+				mancalaHoles[13]+=mancalaHoles[2]+1;
 				mancalaHoles[2]=0;
 				mancalaHoles[10]=0;
 			}
 			else if (index1==11) {
 				scores[1]+=mancalaHoles[1]+1;
+				mancalaHoles[13]+=mancalaHoles[1]+1;
 				mancalaHoles[11]=0;
 				mancalaHoles[1]=0;
 			}
 			else if (index1==12) {
 				scores[1]+=mancalaHoles[0]+1;
+				mancalaHoles[13]+=mancalaHoles[0]+1;
 				mancalaHoles[12]=0;
 				mancalaHoles[0]=0;
 			}
