@@ -9,8 +9,6 @@ import java.util.Scanner;
  */
 public class Testing {
 	static boolean playerTurn=true;
-	static int [] scores= {0,0};
-	private static int [] mancalaHoles= {4,4,4,4,4,4,0,4,4,4,4,4,4,0};
 
 	/**
 	 * Start of the program
@@ -19,7 +17,8 @@ public class Testing {
 	 */
 	public static void main(String[] args) throws InterruptedException {
 		Scanner sc=new Scanner (System.in);
-
+		
+		int [] mancalaHoles= {4,4,4,4,4,4,0,4,4,4,4,4,4,0};
 		String playerAnswer;
 		int index=0;
 		playerAnswer=sc.next();
@@ -31,10 +30,9 @@ public class Testing {
 				for (int i=0;i<mancalaHoles.length; i++) {
 					System.out.println(i+". "+mancalaHoles[i]);
 				}
-				for (int i=0;i<scores.length;i++) {
-					System.out.println("Player "+i+": "+scores[i]);
-				}
-
+				System.out.println("Player 1: "+mancalaHoles[6]);
+				System.out.println("Player 2: "+mancalaHoles[13]);
+				
 				if (playerTurn==true) {
 					//Player 1's holes would be the bottom row and scoring will be right
 					System.out.println("Which hole will you take the beads out of?");
@@ -43,24 +41,25 @@ public class Testing {
 						System.out.println("Why are you trying to cheat???? Enter another hole: ");
 						index=sc.nextInt();
 					}
-					turns(dropBeads(index));
+					turns(dropBeads(index, mancalaHoles));
 
 				}
 				else {
 					//Player 2's holes would be the top row and scoring will be left
-
 					System.out.println("Which hole will you take the beads out of?");
 					index=sc.nextInt();
 					while (index==0||index==1||index==2||index==3||index==4||index==5||index==6||index==13) {
 						System.out.println("Why are you trying to cheat???? Enter another hole: ");
 						index=sc.nextInt();
 					}
-					turns(dropBeads(index));
+					turns(dropBeads(index, mancalaHoles));
 
 				}
 
 			}
-			if (scores[0]>scores[1]) {
+			mancalaHoles[6]+=mancalaHoles[0]+mancalaHoles[1]+mancalaHoles[2]+mancalaHoles[3]+mancalaHoles[4]+mancalaHoles[5];
+			mancalaHoles[13]+=mancalaHoles[7]+mancalaHoles[8]+mancalaHoles[9]+mancalaHoles[10]+mancalaHoles[11]+mancalaHoles[12];
+			if (mancalaHoles[6]>mancalaHoles[13]) {
 				System.out.println("PLAYER 1 WINS!!");
 			}
 			else {
@@ -76,143 +75,70 @@ public class Testing {
 		
 	}
 
-
 	/**
 	 * Method "dropBeads" will deposit one stone in the next hole in a 
 	 * counter-clockwise motion(after the hole the user chose). This method 
 	 * will also keep track of where the last bead is deposited. 
 	 * This method will also call playerTurnAgain and capture.
 	 * @param index - the hole that the user chose to take all the beads out of
+	 * @param holes - the array that stores the amount of beads in each hole
 	 */
-	public static int dropBeads(int index) {
-		int maxBeads=mancalaHoles[index];
+	public static int dropBeads(int index, int []holes) {
+		int maxBeads=holes[index];
 		int lastIndex=0;
-		mancalaHoles[index]=0;
 		int counter=1;
 
+		holes[index]=0;
+		
 		//depositing the beads
 		for (int currentIndex=index+1;counter<=maxBeads;currentIndex++) {
-
-			//skip player 2's mancala when it's player 1's turn & vice versa
-			if (playerTurn==true&&currentIndex==13) {
-				currentIndex=1;
-			}
+			//Skip the opponent's mancala 
 			if (playerTurn==false&&currentIndex==6) {
 				currentIndex=7;
 			}
-
-			//keep sowing if it reaches hole 13
-			if (currentIndex==13) {
-				mancalaHoles[13]+=1;
-
-				//Player 2 scores a point
-				if (playerTurn==false&&currentIndex==13) {
-					scores[1]+=1;
-				}
-				counter++;
+			if (playerTurn==true&&currentIndex==13) {
 				currentIndex=0;
 			}
-
-			mancalaHoles[currentIndex]+=1;      
-			lastIndex=currentIndex;
-
-			//add the score when a bead lands in a player 1's mancala
-			if (playerTurn==true&&currentIndex==6) {
-				scores[0]+=1;
+			
+			if (currentIndex==14) {
+				currentIndex=0;
 			}
-			//counts how many iterations it has done and compares to max of the beads
+			holes[currentIndex]+=1;
+			lastIndex=currentIndex;
 			counter++;
 		}
 		
-		if (mancalaHoles[lastIndex]==1) {
-			capture(lastIndex);
+		if (holes[lastIndex]==1&&lastIndex!=13&&lastIndex!=6) {
+			capture(lastIndex, holes.length-(lastIndex+2), holes);
 		}
 		
 		return lastIndex;
 	}
 
+	
+	//TODO: CAPTURE IS WRONG!! Eg. moved 5 beads and the last one landed
+	//on empty hole ON THE OTHER SIDE and captured.
 	/**
 	 * Method "capture" follows the "capturing" process of the game. If the last
 	 * bead of a player's turn moves to an empty hole on their side, the player 
 	 * is able to capture the beads directly parallel to that hole.
 	 * @param index1 - the hole that the user chose to take all the beads out of
+	 * @param index2 - the hole parallel to index1
+	 * @param holes - the array that stores the amount of beads in each hole
 	 */
-	public static void capture(int index1) {
-		if (playerTurn==true) {
-			if (index1==0) {
-				scores[0]+=mancalaHoles[12]+1;
-				mancalaHoles[6]+=mancalaHoles[12]+1;
-				mancalaHoles[12]=0;
-				mancalaHoles[0]=0;
-				
-			}
-			else if (index1==1) {
-				scores[0]+=mancalaHoles[11]+1;
-				mancalaHoles[6]+=mancalaHoles[11]+1;
-				mancalaHoles[11]=0;
-				mancalaHoles[1]=0;
-			}
-			else if (index1==2) {
-				scores[0]+=mancalaHoles[10]+1;
-				mancalaHoles[6]+=mancalaHoles[10]+1;
-				mancalaHoles[2]=0;
-				mancalaHoles[10]=0;
-			}
-			else if (index1==3) {
-				scores[0]+=mancalaHoles[9]+1;
-				mancalaHoles[6]+=mancalaHoles[9]+1;
-				mancalaHoles[3]=0;
-				mancalaHoles[9]=0;
-			}
-			else if (index1==4) {
-				scores[0]+=mancalaHoles[8]+1;
-				mancalaHoles[6]+=mancalaHoles[8]+1;
-				mancalaHoles[4]=0;
-				mancalaHoles[8]=0;
-			}
-			else if (index1==5) {
-				scores[0]+=mancalaHoles[7]+1;
-				mancalaHoles[6]+=mancalaHoles[7]+1;
-				mancalaHoles[5]=0;
-				mancalaHoles[7]=0;
+	public static void capture(int index1, int index2, int []holes) {
+		if (playerTurn==true){
+			if (index2!=0&&(index1==0||index1==1||index1==2||index1==3||index1==4||index1==5)) {
+				holes[6]+=holes[index2]+1;
+				holes[index1]=0;
+				holes[index2]=0;
 			}
 		}
 		else {
-			if (index1==7) {
-				scores[1]+=mancalaHoles[5]+1;
-				mancalaHoles[13]+=mancalaHoles[5]+1;
-				mancalaHoles[5]=0;
-				mancalaHoles[7]=0;
-			}
-			else if (index1==8) {
-				scores[1]+=mancalaHoles[4]+1;
-				mancalaHoles[13]+=mancalaHoles[4]+1;
-				mancalaHoles[4]=0;
-				mancalaHoles[8]=0;
-			}
-			else if (index1==9) {
-				scores[1]+=mancalaHoles[3]+1;
-				mancalaHoles[13]+=mancalaHoles[3]+1;
-				mancalaHoles[3]=0;
-				mancalaHoles[9]=0;
-			}
-			else if (index1==10) {
-				scores[1]+=mancalaHoles[2]+1;
-				mancalaHoles[13]+=mancalaHoles[2]+1;
-				mancalaHoles[2]=0;
-				mancalaHoles[10]=0;
-			}
-			else if (index1==11) {
-				scores[1]+=mancalaHoles[1]+1;
-				mancalaHoles[13]+=mancalaHoles[1]+1;
-				mancalaHoles[11]=0;
-				mancalaHoles[1]=0;
-			}
-			else if (index1==12) {
-				scores[1]+=mancalaHoles[0]+1;
-				mancalaHoles[13]+=mancalaHoles[0]+1;
-				mancalaHoles[12]=0;
-				mancalaHoles[0]=0;
+			if (index2!=0&&(index1==7||index1==8||index1==9||index1==10||index1==11||index1==12)) {
+				holes[13]+=holes[index2]+1;
+				holes[index1]=0;
+				holes[index2]=0;
 			}
 		}
 
@@ -232,10 +158,10 @@ public class Testing {
 		if (holes[7]==0&&holes[8]==0&&holes[9]==0&&holes[10]==0&&holes[11]==0&&holes[12]==0){
 			return true;
 		}
+		
 		return false;
 	}
 
-	//TODO: fix again sequence
 	/**
 	 * Method "turns" switches the turns and
 	 * checks whether the last bead moved to the mancala. 
@@ -251,13 +177,15 @@ public class Testing {
 		else if (playerTurn==false&&lastIndex==13) {
 			playerTurn=false;
 		}
-		
-		//Switch the players
-		if (playerTurn==true) {
-			playerTurn=false;
-		}
 		else {
-			playerTurn=true;
+			//switch the players
+			if (playerTurn==true) {
+				playerTurn=false;
+			}
+			else {
+				playerTurn=true;
+			}
 		}
+		
 	}
 }
