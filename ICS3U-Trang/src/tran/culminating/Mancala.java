@@ -1,6 +1,7 @@
 package tran.culminating;
 import java.awt.*;
 import hsa_new.Console;
+import java.awt.Image;
 
 /**
  * ICS3U Culminating game program 
@@ -62,7 +63,7 @@ public class Mancala {
 				if (playerTurn==true) {
 					c.println("Which hole will you take the beads out of?");
 					index=c.readInt();
-					while (index==7||index==8||index==9||index==10||index==11||index==12||index==13||index==6) {
+					while (index==7||index==8||index==9||index==10||index==11||index==12||index==13||index==6||(mancalaHoles[index]==0)) {
 						c.println("Why are you trying to cheat???? Enter another hole: ");
 						index=c.readInt();
 					}
@@ -73,7 +74,7 @@ public class Mancala {
 				else {
 					c.println("Which hole will you take the beads out of?");
 					index=c.readInt();
-					while (index==0||index==1||index==2||index==3||index==4||index==5||index==6||index==13) {
+					while (index==0||index==1||index==2||index==3||index==4||index==5||index==6||index==13||(mancalaHoles[index]==0)) {
 						c.println("Why are you trying to cheat???? Enter another hole: ");
 						index=c.readInt();
 					}
@@ -121,8 +122,8 @@ public class Mancala {
 	 * counter-clockwise motion(after the hole the user chose). This method 
 	 * will also keep track of where the last bead is deposited. 
 	 * This method will also call playerTurnAgain and capture.
-	 * @param holes - the array that stores the amount of beads in every hole
 	 * @param index - the hole that the user chose to take all the beads out of
+	 * @param holes - the array that stores the amount of beads in each hole
 	 */
 	public static int dropBeads(int index, int []holes) {
 		int maxBeads=holes[index];
@@ -161,6 +162,8 @@ public class Mancala {
 	 * bead of a player's turn moves to an empty hole on their side, the player 
 	 * is able to capture the beads directly parallel to that hole.
 	 * @param index1 - the hole that the user chose to take all the beads out of
+	 * @param index2 - the hole parallel to index1
+	 * @param holes - the array that stores the amount of beads in each hole
 	 */
 	public static void capture(int index1, int index2, int []holes) {
 		if (playerTurn==true){
@@ -177,7 +180,6 @@ public class Mancala {
 				holes[index2]=0;
 			}
 		}
-
 	}
 
 	/**

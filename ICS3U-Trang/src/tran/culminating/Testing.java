@@ -26,6 +26,7 @@ public class Testing {
 		while(playerAnswer.equalsIgnoreCase("yes")) {
 			while (gameOver(mancalaHoles)==false) {
 
+				//not needed in the game formula
 				System.out.println(playerTurn);
 				for (int i=0;i<mancalaHoles.length; i++) {
 					System.out.println(i+". "+mancalaHoles[i]);
@@ -37,7 +38,7 @@ public class Testing {
 					//Player 1's holes would be the bottom row and scoring will be right
 					System.out.println("Which hole will you take the beads out of?");
 					index=sc.nextInt();
-					while (index==6||index==7||index==8||index==9||index==10||index==11||index==12||index==13) {
+					while (index==6||index==7||index==8||index==9||index==10||index==11||index==12||index==13||(mancalaHoles[index]==0)) {
 						System.out.println("Why are you trying to cheat???? Enter another hole: ");
 						index=sc.nextInt();
 					}
@@ -48,7 +49,7 @@ public class Testing {
 					//Player 2's holes would be the top row and scoring will be left
 					System.out.println("Which hole will you take the beads out of?");
 					index=sc.nextInt();
-					while (index==0||index==1||index==2||index==3||index==4||index==5||index==6||index==13) {
+					while (index==0||index==1||index==2||index==3||index==4||index==5||index==6||index==13||(mancalaHoles[index]==0)) {
 						System.out.println("Why are you trying to cheat???? Enter another hole: ");
 						index=sc.nextInt();
 					}
@@ -74,7 +75,7 @@ public class Testing {
 		Thread.sleep(5000);
 		
 	}
-
+	
 	/**
 	 * Method "dropBeads" will deposit one stone in the next hole in a 
 	 * counter-clockwise motion(after the hole the user chose). This method 
@@ -103,6 +104,7 @@ public class Testing {
 			if (currentIndex==14) {
 				currentIndex=0;
 			}
+			
 			holes[currentIndex]+=1;
 			lastIndex=currentIndex;
 			counter++;
@@ -115,9 +117,7 @@ public class Testing {
 		return lastIndex;
 	}
 
-	
-	//TODO: CAPTURE IS WRONG!! Eg. moved 5 beads and the last one landed
-	//on empty hole ON THE OTHER SIDE and captured.
+	//TODO: when the parallel hole is 0 and you shouldn't have capture
 	/**
 	 * Method "capture" follows the "capturing" process of the game. If the last
 	 * bead of a player's turn moves to an empty hole on their side, the player 
@@ -131,7 +131,7 @@ public class Testing {
 			if (index2!=0&&(index1==0||index1==1||index1==2||index1==3||index1==4||index1==5)) {
 				holes[6]+=holes[index2]+1;
 				holes[index1]=0;
-				holes[index2]=0;
+				holes[index2]=0; 
 			}
 		}
 		else {
