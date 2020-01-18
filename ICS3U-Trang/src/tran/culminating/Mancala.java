@@ -149,8 +149,9 @@ public class Mancala {
 	 * @param holes - the array that stores the amount of beads in every hole
 	 */
 	public static void drawScreen(int [] holes) {
-
-
+		Font font1=new Font("New Times Roman", 20, 16);
+		String amountofBeads;
+		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Image []pics=new Image [13];
 
@@ -172,45 +173,101 @@ public class Mancala {
 		if (holes[0]!=0) {
 			c.drawImage(pics[holes[0]-1], 210, 425, 150, 150, null);
 		}
+		else if (holes[0]>12) {
+			c.drawImage(pics[12], 210, 425, 150, 150, null);
+		}
+		
 		if (holes[1]!=0) {
 			c.drawImage(pics[holes[1]-1], 360, 425, 150, 150, null);
 		}
+		else if (holes[1]>12) {
+			c.drawImage(pics[12], 360, 425, 150, 150, null);
+		}
+		
 		if (holes[2]!=0) {
 			c.drawImage(pics[holes[2]-1], 500, 425, 150, 150, null);
 		}
+		else if (holes[2]>12) {
+			c.drawImage(pics[12], 500, 425, 150, 150, null);
+		}
+		
 		if (holes[3]!=0) {
 			c.drawImage(pics[holes[3]-1], 645, 425, 150, 150, null);
 		}
+		else if (holes[3]>12) {
+			c.drawImage(pics[12], 645, 425, 150, 150, null);
+		}
+		
 		if (holes[4]!=0) {
 			c.drawImage(pics[holes[4]-1], 785, 425, 150, 150, null);
 		}
+		else if (holes[4]>12) {
+			c.drawImage(pics[12], 785, 425, 150, 150, null);
+		}
+		
 		if (holes[5]!=0) {
 			c.drawImage(pics[holes[5]-1], 930, 425, 150, 150, null);
 		}
+		else if (holes[5]>12) {
+			c.drawImage(pics[12], 930, 425, 150, 150, null);
+		}
+		
 		if (holes[6]!=0) {
-			c.drawImage(pics[holes[6]-1], 1085, 325, 150, 150, null);
+			c.drawImage(pics[holes[6]-1], 1075, 325, 150, 150, null);
 		}
+		else if (holes[6]>12) {
+			c.drawImage(pics[12], 1075, 325, 150, 150, null);
+		}
+		
 		if (holes[7]!=0) {
-			c.drawImage(pics[holes[7]-1], 210, 160, 150, 150, null);
+			c.drawImage(pics[holes[7]-1], 930, 160, 150, 150, null);
 		}
+		else if (holes[7]>12) {
+			c.drawImage(pics[12], 930, 160, 150, 150, null);
+		}
+		
 		if (holes[8]!=0) {
-			c.drawImage(pics[holes[8]-1], 360, 160, 150, 150, null);
+			c.drawImage(pics[holes[8]-1], 785, 160, 150, 150, null);
 		}
+		else if (holes[8]>12) {
+			c.drawImage(pics[12], 785, 160, 150, 150, null);
+		}
+		
 		if (holes[9]!=0) {
-			c.drawImage(pics[holes[9]-1], 500, 160, 150, 150, null);
+			c.drawImage(pics[holes[9]-1], 645, 160, 150, 150, null);
 		}
+		else if (holes[9]>12) {
+			c.drawImage(pics[12], 645, 160, 150, 150, null);
+		}
+		
 		if (holes[10]!=0) {
-			c.drawImage(pics[holes[10]-1], 645, 160, 150, 150, null);
+			c.drawImage(pics[holes[10]-1], 500, 160, 150, 150, null);
 		}
+		else if (holes[10]>12) {
+			c.drawImage(pics[12], 500, 160, 150, 150, null);
+		}
+		
 		if (holes[11]!=0) {
-			c.drawImage(pics[holes[11]-1], 785, 160, 150, 150, null);
+			c.drawImage(pics[holes[11]-1], 360, 160, 150, 150, null);
 		}
+		else if (holes[11]>12) {
+			c.drawImage(pics[12], 360, 160, 150, 150, null);
+		}
+		
 		if (holes[12]!=0) {
-			c.drawImage(pics[holes[12]-1], 920, 160, 150, 150, null);
+			c.drawImage(pics[holes[12]-1], 210, 160, 150, 150, null);
 		}
+		else if (holes[12]>12) {
+			c.drawImage(pics[12], 210, 160, 150, 150, null);
+		}
+		
 		if (holes[13]!=0){
-			c.drawImage(pics[holes[13]-1], 100, 290, 150, 150, null);
+			c.drawImage(pics[holes[13]-1], 90, 290, 150, 150, null);
 		}
+		else if (holes[13]>12) {
+			c.drawImage(pics[12], 90, 290, 150, 150, null);
+		}
+		
 	}
 
 	/**
