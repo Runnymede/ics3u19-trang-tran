@@ -2,6 +2,7 @@ package tran.culminating;
 import java.awt.*;
 import hsa_new.Console;
 import java.awt.Image;
+import java.awt.Font;
 
 /**
  * ICS3U Culminating game program 
@@ -22,7 +23,11 @@ public class Mancala {
 	public static void main(String[] args)  throws InterruptedException{
 		int [] mancalaHoles= {4,4,4,4,4,4,0,4,4,4,4,4,4,0};
 		String playerAnswer;
+		String playerName1="APPLE";
+		String playerName2="BANANA";
 		int index=0;
+		Font font1=new Font("New Times Roman", 20, 16);
+		Font font2=new Font("New Times Roman", 20, 30);
 
 		//Introduction to the game and asks the user if the want to play
 		c.println("Mancala");
@@ -55,17 +60,37 @@ public class Mancala {
 		Thread.sleep (1000/30);
 		c.clear();
 
+		//Asks the both player's name
+//		c.println("What's your name player 1?");
+//		playerName1=c.readLine();
+//		c.println("What's your name player 2?");
+//		playerName2=c.readLine();
+//		c.clear();
+
 		//Repeat the game code if the user wants to play again
 		while(playerAnswer.equalsIgnoreCase("yes")) {
 			while (gameOver(mancalaHoles)==false) {
 				drawScreen(mancalaHoles);
 
 				if (playerTurn==true) {
-					c.println("Which hole will you take the beads out of?");
+					c.setFont(font2);
+					c.drawString(playerName1+"'s Turn!!", 75, 95);
+
+					c.setFont(font1);
+					c.drawString("Which hole will you take the beads out of?", 75, 125);
+					c.getCursor();
+					c.setCursor(9,11);
 					index=c.readInt();
 					while ((mancalaHoles[index]==0)||index==6||index==7||index==8||index==9||index==10||index==11||
 							index==12||index==13) {
-						c.println("Why are you trying to cheat???? Enter another hole: ");
+						c.clear();
+						c.setFont(font2);
+						c.drawString(playerName1+"'s Turn!!", 75, 95);
+						drawScreen(mancalaHoles);
+						c.setFont(font1);
+						c.drawString("Why are you trying to cheat???? Enter another hole: ", 75, 125);
+						c.getCursor();
+						c.setCursor(9,11);
 						index=c.readInt();
 					}
 					turns(dropBeads(index, mancalaHoles));
@@ -73,11 +98,24 @@ public class Mancala {
 
 				}
 				else {
-					c.println("Which hole will you take the beads out of?");
+					c.setFont(font2);
+					c.drawString(playerName2+"'s Turn!!", 75, 95);
+
+					c.setFont(font1);
+					c.drawString("Which hole will you take the beads out of?", 75, 125);
+					c.getCursor();
+					c.setCursor(9,11);
 					index=c.readInt();
 					while ((mancalaHoles[index]==0)||(index==0||index==1||index==2||index==3||index==4||index==5||
 							index==6||index==13)) {
-						c.println("Why are you trying to cheat???? Enter another hole: ");
+						c.clear();
+						c.setFont(font2);
+						c.drawString(playerName2+"'s Turn!!", 75, 95);
+						drawScreen(mancalaHoles);
+						c.setFont(font1);
+						c.drawString("Why are you trying to cheat???? Enter another hole: ", 75, 125);
+						c.getCursor();
+						c.setCursor(9,11);
 						index=c.readInt();
 					}
 					turns(dropBeads(index, mancalaHoles));
@@ -86,7 +124,7 @@ public class Mancala {
 			}
 			mancalaHoles[6]+=mancalaHoles[0]+mancalaHoles[1]+mancalaHoles[2]+mancalaHoles[3]+mancalaHoles[4]+mancalaHoles[5];
 			mancalaHoles[13]+=mancalaHoles[7]+mancalaHoles[8]+mancalaHoles[9]+mancalaHoles[10]+mancalaHoles[11]+mancalaHoles[12];
-			
+
 			if (mancalaHoles[6]>mancalaHoles[13]) {
 				System.out.println("PLAYER 1 WINS!!");
 			}
@@ -111,8 +149,8 @@ public class Mancala {
 	 * @param holes - the array that stores the amount of beads in every hole
 	 */
 	public static void drawScreen(int [] holes) {
-		
-		
+
+
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Image []pics=new Image [13];
 
@@ -129,9 +167,50 @@ public class Mancala {
 		pics[10]=toolkit.getImage("src/tran/culminating/Mancala-11.png");
 		pics[11]=toolkit.getImage("src/tran/culminating/Mancala-12.png");
 		pics[12]=toolkit.getImage("src/tran/culminating/MancalaBoard.png");
-		
+
 		c.drawImage(pics[12], 25, 135, 1200, 500, null);
-		
+		if (holes[0]!=0) {
+			c.drawImage(pics[holes[0]-1], 210, 425, 150, 150, null);
+		}
+		if (holes[1]!=0) {
+			c.drawImage(pics[holes[1]-1], 360, 425, 150, 150, null);
+		}
+		if (holes[2]!=0) {
+			c.drawImage(pics[holes[2]-1], 500, 425, 150, 150, null);
+		}
+		if (holes[3]!=0) {
+			c.drawImage(pics[holes[3]-1], 645, 425, 150, 150, null);
+		}
+		if (holes[4]!=0) {
+			c.drawImage(pics[holes[4]-1], 785, 425, 150, 150, null);
+		}
+		if (holes[5]!=0) {
+			c.drawImage(pics[holes[5]-1], 930, 425, 150, 150, null);
+		}
+		if (holes[6]!=0) {
+			c.drawImage(pics[holes[6]-1], 1085, 325, 150, 150, null);
+		}
+		if (holes[7]!=0) {
+			c.drawImage(pics[holes[7]-1], 210, 160, 150, 150, null);
+		}
+		if (holes[8]!=0) {
+			c.drawImage(pics[holes[8]-1], 360, 160, 150, 150, null);
+		}
+		if (holes[9]!=0) {
+			c.drawImage(pics[holes[9]-1], 500, 160, 150, 150, null);
+		}
+		if (holes[10]!=0) {
+			c.drawImage(pics[holes[10]-1], 645, 160, 150, 150, null);
+		}
+		if (holes[11]!=0) {
+			c.drawImage(pics[holes[11]-1], 785, 160, 150, 150, null);
+		}
+		if (holes[12]!=0) {
+			c.drawImage(pics[holes[12]-1], 920, 160, 150, 150, null);
+		}
+		if (holes[13]!=0){
+			c.drawImage(pics[holes[13]-1], 100, 290, 150, 150, null);
+		}
 	}
 
 	/**
@@ -215,7 +294,7 @@ public class Mancala {
 		if (holes[7]==0&&holes[8]==0&&holes[9]==0&&holes[10]==0&&holes[11]==0&&holes[12]==0){
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -226,7 +305,7 @@ public class Mancala {
 	 * @param lastIndex - the hole that the last bead landed in
 	 */
 	public static void turns(int lastIndex) {
-		
+
 		//if the last bead lands in the mancala, the player goes again
 		if (playerTurn==true&&lastIndex==6) {
 			playerTurn=true;
@@ -243,6 +322,6 @@ public class Mancala {
 				playerTurn=true;
 			}
 		}
-		
+
 	}
 }
