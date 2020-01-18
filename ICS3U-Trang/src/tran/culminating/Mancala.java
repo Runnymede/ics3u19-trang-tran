@@ -111,14 +111,27 @@ public class Mancala {
 	 * @param holes - the array that stores the amount of beads in every hole
 	 */
 	public static void drawScreen(int [] holes) {
-		Color woodBrown = new Color(222, 184, 135);
-		Color tan = new Color(212, 174, 125);
+		
+		
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Image []pics=new Image [13];
 
-		c.setColor(woodBrown);
-		c.fillRect(20,200,1190,400);
-		c.setColour(tan);
-		c.fillOval(28,235, 150, 325);
-
+		pics[0]=toolkit.getImage("src/tran/culminating/Mancala-1.png");
+		pics[1]=toolkit.getImage("src/tran/culminating/Mancala-2.png");
+		pics[2]=toolkit.getImage("src/tran/culminating/Mancala-3.png");
+		pics[3]=toolkit.getImage("src/tran/culminating/Mancala-4.png");
+		pics[4]=toolkit.getImage("src/tran/culminating/Mancala-5.png");
+		pics[5]=toolkit.getImage("src/tran/culminating/Mancala-6.png");
+		pics[6]=toolkit.getImage("src/tran/culminating/Mancala-7.png");
+		pics[7]=toolkit.getImage("src/tran/culminating/Mancala-8.png");
+		pics[8]=toolkit.getImage("src/tran/culminating/Mancala-9.png");
+		pics[9]=toolkit.getImage("src/tran/culminating/Mancala-10.png");
+		pics[10]=toolkit.getImage("src/tran/culminating/Mancala-11.png");
+		pics[11]=toolkit.getImage("src/tran/culminating/Mancala-12.png");
+		pics[12]=toolkit.getImage("src/tran/culminating/MancalaBoard.png");
+		
+		c.drawImage(pics[12], 25, 135, 1200, 500, null);
+		
 	}
 
 	/**
