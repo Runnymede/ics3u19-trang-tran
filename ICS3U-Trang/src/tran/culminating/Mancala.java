@@ -14,7 +14,7 @@ public class Mancala {
 	//Global Variables
 	static Console c = new Console (44, 156, "Mancala");
 	static boolean playerTurn=true;
-	
+
 	/**
 	 * Start of the program
 	 * @param args
@@ -63,7 +63,8 @@ public class Mancala {
 				if (playerTurn==true) {
 					c.println("Which hole will you take the beads out of?");
 					index=c.readInt();
-					while (index==7||index==8||index==9||index==10||index==11||index==12||index==13||index==6||(mancalaHoles[index]==0)) {
+					while ((mancalaHoles[index]==0)||index==6||index==7||index==8||index==9||index==10||index==11||
+							index==12||index==13) {
 						c.println("Why are you trying to cheat???? Enter another hole: ");
 						index=c.readInt();
 					}
@@ -74,7 +75,8 @@ public class Mancala {
 				else {
 					c.println("Which hole will you take the beads out of?");
 					index=c.readInt();
-					while (index==0||index==1||index==2||index==3||index==4||index==5||index==6||index==13||(mancalaHoles[index]==0)) {
+					while ((mancalaHoles[index]==0)||(index==0||index==1||index==2||index==3||index==4||index==5||
+							index==6||index==13)) {
 						c.println("Why are you trying to cheat???? Enter another hole: ");
 						index=c.readInt();
 					}
@@ -82,7 +84,9 @@ public class Mancala {
 					c.clear();
 				}
 			}
-
+			mancalaHoles[6]+=mancalaHoles[0]+mancalaHoles[1]+mancalaHoles[2]+mancalaHoles[3]+mancalaHoles[4]+mancalaHoles[5];
+			mancalaHoles[13]+=mancalaHoles[7]+mancalaHoles[8]+mancalaHoles[9]+mancalaHoles[10]+mancalaHoles[11]+mancalaHoles[12];
+			
 			if (mancalaHoles[6]>mancalaHoles[13]) {
 				System.out.println("PLAYER 1 WINS!!");
 			}
@@ -109,7 +113,7 @@ public class Mancala {
 	public static void drawScreen(int [] holes) {
 		Color woodBrown = new Color(222, 184, 135);
 		Color tan = new Color(212, 174, 125);
-		
+
 		c.setColor(woodBrown);
 		c.fillRect(20,200,1190,400);
 		c.setColour(tan);
@@ -131,7 +135,7 @@ public class Mancala {
 		int counter=1;
 
 		holes[index]=0;
-		
+
 		//depositing the beads
 		for (int currentIndex=index+1;counter<=maxBeads;currentIndex++) {
 			//Skip the opponent's mancala 
@@ -141,19 +145,20 @@ public class Mancala {
 			if (playerTurn==true&&currentIndex==13) {
 				currentIndex=0;
 			}
-			
+
 			if (currentIndex==14) {
 				currentIndex=0;
 			}
+
 			holes[currentIndex]+=1;
 			lastIndex=currentIndex;
 			counter++;
 		}
-		
-		if (holes[lastIndex]==1&&lastIndex!=13&&lastIndex!=6) {
+
+		if (holes[lastIndex]==1 && lastIndex!=13 && lastIndex!=6 && holes[14-(lastIndex+2)]!=0) {
 			capture(lastIndex, holes.length-(lastIndex+2), holes);
 		}
-		
+
 		return lastIndex;
 	}
 
@@ -167,19 +172,20 @@ public class Mancala {
 	 */
 	public static void capture(int index1, int index2, int []holes) {
 		if (playerTurn==true){
-			if (index2!=0&&(index1==0||index1==1||index1==2||index1==3||index1==4||index1==5)) {
+			if (index1==0||index1==1||index1==2||index1==3||index1==4||index1==5) {
 				holes[6]+=holes[index2]+1;
 				holes[index1]=0;
-				holes[index2]=0;
+				holes[index2]=0; 
 			}
 		}
 		else {
-			if (index2!=0&&(index1==7||index1==8||index1==9||index1==10||index1==11||index1==12)) {
+			if (index1==7||index1==8||index1==9||index1==10||index1==11||index1==12) {
 				holes[13]+=holes[index2]+1;
 				holes[index1]=0;
 				holes[index2]=0;
 			}
 		}
+
 	}
 
 	/**
@@ -189,12 +195,14 @@ public class Mancala {
 	 * @return true when the game is over 
 	 */
 	public static boolean gameOver(int [] holes) {
+
 		if (holes[0]==0&&holes[1]==0&&holes[2]==0&&holes[3]==0&&holes[4]==0&&holes[5]==0) {
 			return true;
 		}
 		if (holes[7]==0&&holes[8]==0&&holes[9]==0&&holes[10]==0&&holes[11]==0&&holes[12]==0){
 			return true;
 		}
+		
 		return false;
 	}
 
@@ -202,10 +210,10 @@ public class Mancala {
 	 * Method "turns" switches the turns and
 	 * checks whether the last bead moved to the mancala. 
 	 * This allows the player to have an extra turn.
-	 * @param lastIndex - 
+	 * @param lastIndex - the hole that the last bead landed in
 	 */
 	public static void turns(int lastIndex) {
-
+		
 		//if the last bead lands in the mancala, the player goes again
 		if (playerTurn==true&&lastIndex==6) {
 			playerTurn=true;
@@ -213,13 +221,15 @@ public class Mancala {
 		else if (playerTurn==false&&lastIndex==13) {
 			playerTurn=false;
 		}
-
-		//Switch the players
-		if (playerTurn==true) {
-			playerTurn=false;
-		}
 		else {
-			playerTurn=true;
+			//switch the players
+			if (playerTurn==true) {
+				playerTurn=false;
+			}
+			else {
+				playerTurn=true;
+			}
 		}
+		
 	}
 }
