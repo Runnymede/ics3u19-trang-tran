@@ -69,6 +69,22 @@ public class Mancala {
 			playerName1=c.readLine();
 			c.println("What's your name player 2?");
 			playerName2=c.readLine();
+			
+			//Resets the board
+			mancalaHoles[0]=4;
+			mancalaHoles[1]=4;
+			mancalaHoles[2]=4;
+			mancalaHoles[3]=4;
+			mancalaHoles[4]=4;
+			mancalaHoles[5]=4;
+			mancalaHoles[6]=0;
+			mancalaHoles[7]=4;
+			mancalaHoles[8]=4;
+			mancalaHoles[9]=4;
+			mancalaHoles[10]=4;
+			mancalaHoles[11]=4;
+			mancalaHoles[12]=4;
+			mancalaHoles[13]=0;
 			c.clear();
 			
 			while (gameOver(mancalaHoles)==false) {
@@ -237,7 +253,7 @@ public class Mancala {
 		c.drawString(holes[4]+" beads", 830, 563);
 		
 		if (holes[5]>12) {
-			c.drawImage(pics[11], 850, 425, 145, 145, null);
+			c.drawImage(pics[11], 930, 425, 145, 145, null);
 		}
 		else if (holes[5]!=0) {
 			c.drawImage(pics[holes[5]-1], 930, 425, 145, 145, null);
@@ -309,10 +325,10 @@ public class Mancala {
 		c.drawString(holes[12]+" beads", 255, 200);
 		
 		if (holes[13]>12) {
-			c.drawImage(pics[11], 85, 280, 145, 145, null);
+			c.drawImage(pics[11], 70, 280, 145, 145, null);
 		}
 		else if (holes[13]!=0){
-			c.drawImage(pics[holes[13]-1], 90, 280, 145, 145, null);
+			c.drawImage(pics[holes[13]-1], 70, 280, 145, 145, null);
 		}
 		c.setColor(Color.black);
 		c.drawString(holes[13]+" beads", 115, 470);
