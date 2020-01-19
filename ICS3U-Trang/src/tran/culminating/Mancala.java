@@ -171,7 +171,6 @@ public class Mancala {
 	 */
 	public static void drawScreen(int [] holes) {
 		Font font1=new Font("New Times Roman", 20, 16);
-		
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Image []pics=new Image [13];
 
