@@ -5,7 +5,7 @@ import java.awt.Image;
 import java.awt.Font;
 
 /**
- * ICS3U Culminating game program 
+ * ICS3U Culminating Game Program
  * This program is meant to run the game Mancala upon user's request.
  * Date: January 13, 2020
  * @author Trang Tran
@@ -21,15 +21,17 @@ public class Mancala {
 	 * @param args
 	 */
 	public static void main(String[] args)  throws InterruptedException{
-		int [] mancalaHoles= {4,4,4,4,4,4,0,4,4,4,4,4,4,0};
-		String playerAnswer;
-		String playerName1;
-		String playerName2;
-		int index=0;
-		Font font1=new Font("New Times Roman", 20, 16);
-		Font font2=new Font("New Times Roman", 20, 30);
+		
+		//Variables used
+		int [] mancalaHoles= {4,4,4,4,4,4,0,4,4,4,4,4,4,0};//stores the amount of beads in every hole
+		String playerAnswer;//stores the user answer to play the game
+		String playerName1;//stores the name of player 1
+		String playerName2;//stores the name of player 2
+		int index=0;//stores the value of the index that the user chose to take the beads out of
+		Font font1=new Font("New Times Roman", 20, 16);//font 1
+		Font font2=new Font("New Times Roman", 20, 30);//font 2
 
-		//Introduction to the game and asks the user if the want to play
+		//Introduction to the game and asks the user if they want to play
 		c.println("Mancala");
 		c.println("If you don't know what this game is, it's a board game. "
 				+ "This game has a board with 14 holes.");
@@ -61,10 +63,9 @@ public class Mancala {
 		Thread.sleep (1000/30);
 		c.clear();
 
-		//Repeat the game code if the user wants to play again
+		//Play the game when the player inputs yes
 		while(playerAnswer.equalsIgnoreCase("yes")) {
-			
-			//Asks the both player's name
+			//Asks both player's name
 			c.println("What's your name player 1?");
 			playerName1=c.readLine();
 			c.println("What's your name player 2?");
@@ -87,86 +88,85 @@ public class Mancala {
 			mancalaHoles[13]=0;
 			c.clear();
 			
+			//Beginning game code 
 			while (gameOver(mancalaHoles)==false) {
-				drawScreen(mancalaHoles);
+				
+				//prints board to the screen
+				drawScreen(mancalaHoles, playerName1, playerName2);
 
+				//player 1's turn
 				if (playerTurn==true) {
-					c.setFont(font2);
-					c.drawString(playerName1+"'s Turn!!", 75, 95);
-					c.drawString(playerName1+": "+mancalaHoles[6], 1000, 100);
-					c.drawString(playerName2+": "+mancalaHoles[13], 1000, 125);
-					
+					//gets user input 
 					c.setFont(font1);
 					c.drawString("Which hole will you take the beads out of?", 75, 125);
 					c.getCursor();
 					c.setCursor(9,11);
 					index=c.readInt();
+					Thread.sleep (1000/30);
+					c.clear();
+					
+					//The program catches the player when they try to cheat 
 					while ((mancalaHoles[index]==0)||index==6||index==7||index==8||index==9||index==10||index==11||
 							index==12||index==13) {
-						c.clear();
-						c.setFont(font2);
-						c.drawString(playerName1+"'s Turn!!", 75, 95);
-						c.drawString(playerName1+": "+mancalaHoles[6], 1000, 100);
-						c.drawString(playerName2+": "+mancalaHoles[13], 1000, 125);
-						
-						drawScreen(mancalaHoles);
+						drawScreen(mancalaHoles, playerName1, playerName2);
 						c.setFont(font1);
 						c.drawString("Why are you trying to cheat???? Enter another hole: ", 75, 125);
 						c.getCursor();
 						c.setCursor(9,11);
 						index=c.readInt();
 					}
+					
+					//calls the turns and dropBeads Method
 					turns(dropBeads(index, mancalaHoles));
+					Thread.sleep (1000/30);
 					c.clear();
 
 				}
+				
+				//Player 2's turn
 				else {
-					c.setFont(font2);
-					c.drawString(playerName2+"'s Turn!!", 75, 95);
-					c.drawString(playerName1+": "+mancalaHoles[6], 1000, 100);
-					c.drawString(playerName2+": "+mancalaHoles[13], 1000, 125);
-					
+					//gets user input 
 					c.setFont(font1);
 					c.drawString("Which hole will you take the beads out of?", 75, 125);
 					c.getCursor();
 					c.setCursor(9,11);
 					index=c.readInt();
+					Thread.sleep (1000/30);
+					c.clear();
+					
+					//The program catches the player when they try to cheat 
 					while ((mancalaHoles[index]==0)||(index==0||index==1||index==2||index==3||index==4||index==5||
 							index==6||index==13)) {
-						c.clear();
-						c.setFont(font2);
-						c.drawString(playerName2+"'s Turn!!", 75, 95);
-						c.drawString(playerName1+": "+mancalaHoles[6], 1000, 100);
-						c.drawString(playerName2+": "+mancalaHoles[13], 1000, 125);
-						
-						drawScreen(mancalaHoles);
+						drawScreen(mancalaHoles, playerName1, playerName2);
 						c.setFont(font1);
 						c.drawString("Why are you trying to cheat???? Enter another hole: ", 75, 125);
 						c.getCursor();
 						c.setCursor(9,11);
 						index=c.readInt();
 					}
+					//calls the turns and dropBeads Method
 					turns(dropBeads(index, mancalaHoles));
+					Thread.sleep (1000/30);
 					c.clear();
 				}
 				c.clear();
 			}
+			//when the game is over, all the beads are added on the players side to decide the winner 
 			mancalaHoles[6]+=mancalaHoles[0]+mancalaHoles[1]+mancalaHoles[2]+mancalaHoles[3]+mancalaHoles[4]+mancalaHoles[5];
 			mancalaHoles[13]+=mancalaHoles[7]+mancalaHoles[8]+mancalaHoles[9]+mancalaHoles[10]+mancalaHoles[11]+mancalaHoles[12];
 
+			//the winner is decided and displays a message
 			if (mancalaHoles[6]>mancalaHoles[13]) {
 				c.setFont(font2);
 				c.drawString(playerName1+" Wins!!", 75, 95);
-				c.drawString(playerName1+": "+mancalaHoles[6], 1000, 100);
-				c.drawString(playerName2+": "+mancalaHoles[13], 1000, 125);
 			}
 			else {
 				c.setFont(font2);
 				c.drawString(playerName2+" Wins!!", 75, 95);
-				c.drawString(playerName1+": "+mancalaHoles[6], 1000, 100);
-				c.drawString(playerName2+": "+mancalaHoles[13], 1000, 125);
 			}
-			drawScreen (mancalaHoles);
+			
+			//draws the final board and asks the user to play again
+			drawScreen (mancalaHoles, playerName1, playerName2);
 			c.setFont(font1);
 			c.drawString("Do you want to play again?", 75, 125);
 			c.getCursor();
@@ -175,6 +175,8 @@ public class Mancala {
 			Thread.sleep(3000);
 			c.clear();
 		}
+		
+		//output message when the user doesn't want to play again
 		c.println("Come back when you wanna play again!");
 		Thread.sleep(3000);
 		c.close();
@@ -185,8 +187,10 @@ public class Mancala {
 	 * and print the player turn indication board after each turn.
 	 * @param holes - the array that stores the amount of beads in every hole
 	 */
-	public static void drawScreen(int [] holes) {
+	public static void drawScreen(int [] holes, String player1, String player2) {
+		//variables
 		Font font1=new Font("New Times Roman", 20, 16);
+		Font font2=new Font("New Times Roman", 20, 30);
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Image []pics=new Image [13];
 
@@ -203,6 +207,19 @@ public class Mancala {
 		pics[10]=toolkit.getImage("src/tran/culminating/Mancala-11.png");
 		pics[11]=toolkit.getImage("src/tran/culminating/Mancala-12.png");
 		pics[12]=toolkit.getImage("src/tran/culminating/MancalaBoard.png");
+		
+		//printing the player indication and scores
+		if (playerTurn==true&&gameOver(holes)==false) {
+			c.setFont(font2);
+			c.drawString(player1+"'s Turn!!", 75, 95);
+		}
+		else if (playerTurn==false&&gameOver(holes)==false){
+			c.setFont(font2);
+			c.drawString(player2+"'s Turn!!", 75, 95);
+		}
+		c.setFont(font2);
+		c.drawString(player1+": "+holes[6], 1000, 100);
+		c.drawString(player2+": "+holes[13], 1000, 125);
 		c.setFont(font1);
 		
 		//Printing the board and the beads within each hole
@@ -268,7 +285,7 @@ public class Mancala {
 			c.drawImage(pics[holes[6]-1], 1075, 325, 145, 145, null);
 		}
 		c.setColor(Color.black);
-		c.drawString(holes[6]+" beads", 1115, 300);
+		c.drawString(holes[6]+" beads", 1114, 300);
 		
 		if (holes[7]>12) {
 			c.drawImage(pics[11], 930, 160, 145, 145, null);
@@ -344,14 +361,15 @@ public class Mancala {
 	 * @param holes - the array that stores the amount of beads in each hole
 	 */
 	public static int dropBeads(int index, int []holes) {
+		//variables
 		int maxBeads=holes[index];
 		int lastIndex=0;
 		int counter=1;
-
 		holes[index]=0;
 
 		//depositing the beads
 		for (int currentIndex=index+1;counter<=maxBeads;currentIndex++) {
+			//When it reaches the 13th hole, it will deposit a bead and continue to deposit in the 0 hole
 			if (currentIndex==14) {
 				currentIndex=0;
 			}
@@ -368,6 +386,7 @@ public class Mancala {
 			counter++;
 		}
 
+		//Calls the capture Method
 		if (holes[lastIndex]==1 && lastIndex!=13 && lastIndex!=6 && holes[14-(lastIndex+2)]!=0) {
 			capture(lastIndex, holes.length-(lastIndex+2), holes);
 		}
@@ -384,6 +403,7 @@ public class Mancala {
 	 * @param holes - the array that stores the amount of beads in each hole
 	 */
 	public static void capture(int index1, int index2, int []holes) {
+		//player 1's turn
 		if (playerTurn==true){
 			if (index1==0||index1==1||index1==2||index1==3||index1==4||index1==5) {
 				holes[6]+=holes[index2]+1;
@@ -391,6 +411,7 @@ public class Mancala {
 				holes[index2]=0; 
 			}
 		}
+		//player 2's turn
 		else {
 			if (index1==7||index1==8||index1==9||index1==10||index1==11||index1==12) {
 				holes[13]+=holes[index2]+1;
@@ -409,6 +430,8 @@ public class Mancala {
 	 */
 	public static boolean gameOver(int [] holes) {
 
+		//checks if all the holes on one side is empty
+		//this stops the game
 		if (holes[0]==0&&holes[1]==0&&holes[2]==0&&holes[3]==0&&holes[4]==0&&holes[5]==0) {
 			return true;
 		}
