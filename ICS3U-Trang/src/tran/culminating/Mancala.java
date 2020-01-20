@@ -15,6 +15,8 @@ public class Mancala {
 	//Global Variables
 	static Console c = new Console (44, 156, "Mancala");
 	static boolean playerTurn=true;
+	static Font font1=new Font("New Times Roman", 20, 16);
+	static Font font2=new Font("New Times Roman", 20, 30);
 
 	/**
 	 * Start of the program
@@ -28,31 +30,27 @@ public class Mancala {
 		String playerName1;//stores the name of player 1
 		String playerName2;//stores the name of player 2
 		int index=0;//stores the value of the index that the user chose to take the beads out of
-		Font font1=new Font("New Times Roman", 20, 16);//font 1
-		Font font2=new Font("New Times Roman", 20, 30);//font 2
 
 		//Introduction to the game and asks the user if they want to play
 		c.println("Mancala");
-		c.println("If you don't know what this game is, it's a board game. "
-				+ "This game has a board with 14 holes.");
+		c.println("If you don't know what this is, it's a board game. "
+				+ "The board has a total of 14 holes and 48 beads.");
 		c.print("Two big holes at the ends (called the mancala) and "
 				+ "12 small holes lined in two rows in the middle. "
-				+ " The holes are labeled with white numbers. "
+				+ " \nThe holes are labeled with white numbers. "
 				+ "The amount of beads in the hole will be represented by the black number."
-				+ " In total, there are 48 beads. These beads are used "
-				+ "to score and keep the game going. \r ");
-		c.println("**********************************************************************************");
+				+ "\nThese beads are used to score and keep the game going. "
+				+ "The goal of the game is to get more beads in your mancala");
+		c.println("\n**********************************************************************************");
 		c.println("RULES:");
-		c.println("1. Every hole (except mancala) starts with 4 beads");
-		c.println("2. The mancala on your right is your scoring and the row of holes nearest to you is your side");
-		c.println("3. The game begins with one player picking up all of the beads in any one of the holes on their side");
-		c.println("4. The player deposits one stone in the next hole and the hole after that, in a counter-clockwise motion, until the stones run out.");
-		c.println("5. You're not allowed to take beads from your opponent's side");
-		c.println("6. Your own Mancala counts as a hole but your opponent's Mancala does not count, so skip it and continue moving to the next holes");
-		c.println("7. Always place all captured beads in your Mancala");
-		c.println("8. The game ends when all six holes on a player's side of the Mancala board are empty");
-		c.println("9. The player who still has beads on their side of the board when the game ends, captures all of them");
-		c.println("10. Count all the beads in each Mancala. The winner is the player with the most beads");
+		c.println("1. Player 1's mancala is on the right and the row of holes on the bottom is player 1's side");
+		c.println("2. Player 2's mancala is on the left and the row of holes on the top is player 2's side");
+		c.println("3. The player deposits one stone in the following holes, in a counter-clockwise motion, until the stones run out.");
+		c.println("4. You're not allowed to take beads from your opponent's side");
+		c.println("5. Your own Mancala counts as a hole but your opponent's Mancala does not count");
+		c.println("6. The game ends when all six holes on a player's side of the Mancala board are empty");
+		c.println("7. The player who still has beads on their side of the board when the game ends, captures all of them");
+		c.println("8. Count all the beads in each Mancala. The winner is the player with the most beads");
 		c.println();
 		c.println("SPECIAL RULES:");
 		c.println("1. If you end your turn by putting a bead in your own mancala then you get a free turn");
@@ -98,56 +96,32 @@ public class Mancala {
 				if (playerTurn==true) {
 					//gets user input 
 					c.setFont(font1);
-					c.drawString("Which hole will you take the beads out of?", 75, 125);
+					c.drawString("Which hole will you take the beads out of?(bottom row)", 75, 125);
 					c.getCursor();
-					c.setCursor(9,11);
+					c.setCursor(8,11);
 					index=c.readInt();
 					Thread.sleep (1000/30);
 					c.clear();
 					
-					//The program catches the player when they try to cheat 
-					while ((mancalaHoles[index]==0)||index==6||index==7||index==8||index==9||index==10||index==11||
-							index==12||index==13) {
-						drawScreen(mancalaHoles, playerName1, playerName2);
-						c.setFont(font1);
-						c.drawString("Why are you trying to cheat???? Enter another hole: ", 75, 125);
-						c.getCursor();
-						c.setCursor(9,11);
-						index=c.readInt();
-					}
-					
-					//calls the turns and dropBeads Method
-					turns(dropBeads(index, mancalaHoles));
-					Thread.sleep (1000/30);
-					c.clear();
-
+					//calls the turns, noCheating and dropBeads Method
+					drawScreen(mancalaHoles, playerName1, playerName2);
+					turns(dropBeads(noCheating(index, mancalaHoles), mancalaHoles));
 				}
 				
 				//Player 2's turn
 				else {
 					//gets user input 
 					c.setFont(font1);
-					c.drawString("Which hole will you take the beads out of?", 75, 125);
+					c.drawString("Which hole will you take the beads out of?(top row)", 75, 125);
 					c.getCursor();
-					c.setCursor(9,11);
+					c.setCursor(8,11);
 					index=c.readInt();
 					Thread.sleep (1000/30);
 					c.clear();
 					
-					//The program catches the player when they try to cheat 
-					while ((mancalaHoles[index]==0)||(index==0||index==1||index==2||index==3||index==4||index==5||
-							index==6||index==13)) {
-						drawScreen(mancalaHoles, playerName1, playerName2);
-						c.setFont(font1);
-						c.drawString("Why are you trying to cheat???? Enter another hole: ", 75, 125);
-						c.getCursor();
-						c.setCursor(9,11);
-						index=c.readInt();
-					}
-					//calls the turns and dropBeads Method
-					turns(dropBeads(index, mancalaHoles));
-					Thread.sleep (1000/30);
-					c.clear();
+					//calls the turns, noCheating and dropBeads Method
+					drawScreen(mancalaHoles, playerName1, playerName2);
+					turns(dropBeads(noCheating(index, mancalaHoles), mancalaHoles));
 				}
 				c.clear();
 			}
@@ -170,7 +144,7 @@ public class Mancala {
 			c.setFont(font1);
 			c.drawString("Do you want to play again?", 75, 125);
 			c.getCursor();
-			c.setCursor(9,11);
+			c.setCursor(8,11);
 			playerAnswer=c.readLine();
 			Thread.sleep(3000);
 			c.clear();
@@ -181,7 +155,155 @@ public class Mancala {
 		Thread.sleep(3000);
 		c.close();
 	}
+	
+	/**
+	 * Method "noCheating" catches the player cheating. If they try to cheat by typing an index
+	 * they can't pick the program will have them pick again.
+	 * @param - index the index they chose before the method is called
+	 * @param holes - the array that stores the amount of beads in each hole
+	 * @return the new index 
+	 */
+	public static int noCheating(int index, int []holes) {
+		if (playerTurn==true) {
+			while ((holes[index]==0)||index==6||index==7||index==8||index==9||index==10||index==11||
+					index==12||index==13) {
+				c.setFont(font1);
+				c.drawString("Why are you trying to cheat???? Enter another hole: ", 75, 125);
+				c.getCursor();
+				c.setCursor(8,11);
+				index=c.readInt();
+			}
+		}
+		else {
+			while ((holes[index]==0)||(index==0||index==1||index==2||index==3||index==4||index==5||
+					index==6||index==13)) {
+				c.setFont(font1);
+				c.drawString("Why are you trying to cheat???? Enter another hole: ", 75, 125);
+				c.getCursor();
+				c.setCursor(8,11);
+				index=c.readInt();
+			}
+		}
+		return index;
+	}
+	
+	/**
+	 * Method "dropBeads" will deposit one stone in the next hole in a 
+	 * counter-clockwise motion(after the hole the user chose). This method 
+	 * will also keep track of where the last bead is deposited. 
+	 * This method will also call playerTurnAgain and capture.
+	 * @param index - the hole that the user chose to take all the beads out of
+	 * @param holes - the array that stores the amount of beads in each hole
+	 * @return the hole that the last bead falls in
+	 */
+	public static int dropBeads(int index, int []holes) {
+		//variables
+		int maxBeads=holes[index];
+		int lastIndex=0;
+		int counter=1;
+		holes[index]=0;
 
+		//depositing the beads
+		for (int currentIndex=index+1;counter<=maxBeads;currentIndex++) {
+			//When it reaches the 13th hole, it will deposit a bead and continue to deposit in the 0 hole
+			if (currentIndex==14) {
+				currentIndex=0;
+			}
+			//Skip the opponent's mancala 
+			if (playerTurn==false&&currentIndex==6) {
+				currentIndex=7;
+			}
+			if (playerTurn==true&&currentIndex==13) {
+				currentIndex=0;
+			}
+
+			holes[currentIndex]+=1;
+			lastIndex=currentIndex;
+			counter++;
+		}
+
+		//Calls the capture Method
+		if (holes[lastIndex]==1 && lastIndex!=13 && lastIndex!=6 && holes[14-(lastIndex+2)]!=0) {
+			capture(lastIndex, holes.length-(lastIndex+2), holes);
+		}
+
+		return lastIndex;
+	}
+
+	/**
+	 * Method "capture" follows the "capturing" process of the game. If the last
+	 * bead of a player's turn moves to an empty hole on their side, the player 
+	 * is able to capture the beads directly parallel to that hole.
+	 * @param index1 - the hole that the user chose to take all the beads out of
+	 * @param index2 - the hole parallel to index1
+	 * @param holes - the array that stores the amount of beads in each hole
+	 */
+	public static void capture(int index1, int index2, int []holes) {
+		//player 1's turn
+		if (playerTurn==true){
+			if (index1==0||index1==1||index1==2||index1==3||index1==4||index1==5) {
+				holes[6]+=holes[index2]+1;
+				holes[index1]=0;
+				holes[index2]=0; 
+			}
+		}
+		//player 2's turn
+		else {
+			if (index1==7||index1==8||index1==9||index1==10||index1==11||index1==12) {
+				holes[13]+=holes[index2]+1;
+				holes[index1]=0;
+				holes[index2]=0;
+			}
+		}
+
+	}
+
+	/**
+	 * Method "gameOver" checks whether a player's side has no beads. 
+	 * This indicates a game over according to the rules.
+	 * @param holes - the array that stores the amount of beads in every hole
+	 * @return true when the game is over 
+	 */
+	public static boolean gameOver(int [] holes) {
+
+		//checks if all the holes on one side is empty
+		//this stops the game
+		if (holes[0]==0&&holes[1]==0&&holes[2]==0&&holes[3]==0&&holes[4]==0&&holes[5]==0) {
+			return true;
+		}
+		if (holes[7]==0&&holes[8]==0&&holes[9]==0&&holes[10]==0&&holes[11]==0&&holes[12]==0){
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Method "turns" switches the turns and
+	 * checks whether the last bead moved into the mancala. 
+	 * This allows the player to have an extra turn.
+	 * @param lastIndex - the hole that the last bead landed in
+	 */
+	public static void turns(int lastIndex) {
+
+		//if the last bead lands in the mancala, the player goes again
+		if (playerTurn==true&&lastIndex==6) {
+			playerTurn=true;
+		}
+		else if (playerTurn==false&&lastIndex==13) {
+			playerTurn=false;
+		}
+		else {
+			//switch the players
+			if (playerTurn==true) {
+				playerTurn=false;
+			}
+			else {
+				playerTurn=true;
+			}
+		}
+	}
+	
 	/**
 	 * Method "drawScreen" will draw the Mancala board, print the score board
 	 * and print the player turn indication board after each turn.
@@ -189,8 +311,6 @@ public class Mancala {
 	 */
 	public static void drawScreen(int [] holes, String player1, String player2) {
 		//variables
-		Font font1=new Font("New Times Roman", 20, 16);
-		Font font2=new Font("New Times Roman", 20, 30);
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Image []pics=new Image [13];
 
@@ -216,6 +336,21 @@ public class Mancala {
 		else if (playerTurn==false&&gameOver(holes)==false){
 			c.setFont(font2);
 			c.drawString(player2+"'s Turn!!", 75, 95);
+		}
+		else {
+			//when it's game over, every hole in the middle will have no beads
+			holes[0]=0;
+			holes[1]=0;
+			holes[2]=0;
+			holes[3]=0;
+			holes[4]=0;
+			holes[5]=0;
+			holes[7]=0;
+			holes[8]=0;
+			holes[9]=0;
+			holes[10]=0;
+			holes[11]=0;
+			holes[12]=0;
 		}
 		c.setFont(font2);
 		c.drawString(player1+": "+holes[6], 1000, 100);
@@ -350,121 +485,5 @@ public class Mancala {
 		c.setColor(Color.black);
 		c.drawString(holes[13]+" beads", 115, 470);
 		
-	}
-
-	/**
-	 * Method "dropBeads" will deposit one stone in the next hole in a 
-	 * counter-clockwise motion(after the hole the user chose). This method 
-	 * will also keep track of where the last bead is deposited. 
-	 * This method will also call playerTurnAgain and capture.
-	 * @param index - the hole that the user chose to take all the beads out of
-	 * @param holes - the array that stores the amount of beads in each hole
-	 */
-	public static int dropBeads(int index, int []holes) {
-		//variables
-		int maxBeads=holes[index];
-		int lastIndex=0;
-		int counter=1;
-		holes[index]=0;
-
-		//depositing the beads
-		for (int currentIndex=index+1;counter<=maxBeads;currentIndex++) {
-			//When it reaches the 13th hole, it will deposit a bead and continue to deposit in the 0 hole
-			if (currentIndex==14) {
-				currentIndex=0;
-			}
-			//Skip the opponent's mancala 
-			if (playerTurn==false&&currentIndex==6) {
-				currentIndex=7;
-			}
-			if (playerTurn==true&&currentIndex==13) {
-				currentIndex=0;
-			}
-
-			holes[currentIndex]+=1;
-			lastIndex=currentIndex;
-			counter++;
-		}
-
-		//Calls the capture Method
-		if (holes[lastIndex]==1 && lastIndex!=13 && lastIndex!=6 && holes[14-(lastIndex+2)]!=0) {
-			capture(lastIndex, holes.length-(lastIndex+2), holes);
-		}
-
-		return lastIndex;
-	}
-
-	/**
-	 * Method "capture" follows the "capturing" process of the game. If the last
-	 * bead of a player's turn moves to an empty hole on their side, the player 
-	 * is able to capture the beads directly parallel to that hole.
-	 * @param index1 - the hole that the user chose to take all the beads out of
-	 * @param index2 - the hole parallel to index1
-	 * @param holes - the array that stores the amount of beads in each hole
-	 */
-	public static void capture(int index1, int index2, int []holes) {
-		//player 1's turn
-		if (playerTurn==true){
-			if (index1==0||index1==1||index1==2||index1==3||index1==4||index1==5) {
-				holes[6]+=holes[index2]+1;
-				holes[index1]=0;
-				holes[index2]=0; 
-			}
-		}
-		//player 2's turn
-		else {
-			if (index1==7||index1==8||index1==9||index1==10||index1==11||index1==12) {
-				holes[13]+=holes[index2]+1;
-				holes[index1]=0;
-				holes[index2]=0;
-			}
-		}
-
-	}
-
-	/**
-	 * Method "gameOver" checks whether a player's side has no beads. 
-	 * This indicates a game over according to the rules.
-	 * @param holes - the array that stores the amount of beads in every hole
-	 * @return true when the game is over 
-	 */
-	public static boolean gameOver(int [] holes) {
-
-		//checks if all the holes on one side is empty
-		//this stops the game
-		if (holes[0]==0&&holes[1]==0&&holes[2]==0&&holes[3]==0&&holes[4]==0&&holes[5]==0) {
-			return true;
-		}
-		if (holes[7]==0&&holes[8]==0&&holes[9]==0&&holes[10]==0&&holes[11]==0&&holes[12]==0){
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
-	 * Method "turns" switches the turns and
-	 * checks whether the last bead moved into the mancala. 
-	 * This allows the player to have an extra turn.
-	 * @param lastIndex - the hole that the last bead landed in
-	 */
-	public static void turns(int lastIndex) {
-
-		//if the last bead lands in the mancala, the player goes again
-		if (playerTurn==true&&lastIndex==6) {
-			playerTurn=true;
-		}
-		else if (playerTurn==false&&lastIndex==13) {
-			playerTurn=false;
-		}
-		else {
-			//switch the players
-			if (playerTurn==true) {
-				playerTurn=false;
-			}
-			else {
-				playerTurn=true;
-			}
-		}
 	}
 }
