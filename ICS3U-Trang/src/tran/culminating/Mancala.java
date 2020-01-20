@@ -159,7 +159,7 @@ public class Mancala {
 	/**
 	 * Method "noCheating" catches the player cheating. If they try to cheat by typing an index
 	 * they can't pick the program will have them pick again.
-	 * @param - index the index they chose before the method is called
+	 * @param index - the index they chose before the method is called
 	 * @param holes - the array that stores the amount of beads in each hole
 	 * @return the new index 
 	 */
@@ -308,12 +308,15 @@ public class Mancala {
 	 * Method "drawScreen" will draw the Mancala board, print the score board
 	 * and print the player turn indication board after each turn.
 	 * @param holes - the array that stores the amount of beads in every hole
+	 * @param player1 - stores the name of player 1
+	 * @param player2 - stores the name of player 2
 	 */
 	public static void drawScreen(int [] holes, String player1, String player2) {
 		//variables
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Image []pics=new Image [13];
 
+		//assigning pics array
 		pics[0]=toolkit.getImage("src/tran/culminating/Mancala-1.png");
 		pics[1]=toolkit.getImage("src/tran/culminating/Mancala-2.png");
 		pics[2]=toolkit.getImage("src/tran/culminating/Mancala-3.png");
