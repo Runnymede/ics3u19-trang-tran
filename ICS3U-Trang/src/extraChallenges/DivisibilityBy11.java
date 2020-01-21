@@ -15,14 +15,16 @@ public class DivisibilityBy11 {
 		 }
 		 
 		 for (int a=0;a<numbers;a++) {
-			 subtract(input.get(a), input);
+			 int numberSecondary=input.get(a);
+			 if (subtract(input.get(a), input)%11==0) {
+				 System.out.println("The number "+ numberSecondary+" is divisible by 11.");
+			 }
 			 System.out.println();
 		 }
 	}
 
 	public static int subtract(int number, List<Integer> input) {
 		int sub;
-		int numberSecondary=number;
 		String number2;
 		int length=Integer.toString(number).length();
 		
@@ -32,9 +34,6 @@ public class DivisibilityBy11 {
 			number=number-sub;
 			number/=10;
 		}
-		if (number%11==0) {
-			 System.out.println("The number "+ numberSecondary+" is divisible by 11.");
-		 }
 		return number;
 	}
 	
