@@ -6,7 +6,7 @@ import java.awt.Font;
 
 /**
  * ICS3U Culminating Game Program
- * This program is meant to run the game Mancala upon user's request.
+ * This program is meant to run the game Mancala upon user request.
  * Date: January 13, 2020
  * @author Trang Tran
  */
@@ -14,9 +14,9 @@ public class Mancala {
 
 	//Global Variables
 	static Console c = new Console (44, 156, "Mancala");
-	static boolean playerTurn=true;
-	static Font font1=new Font("New Times Roman", 20, 16);
-	static Font font2=new Font("New Times Roman", 20, 30);
+	static boolean playerTurn=true;//switches the players
+	static Font font1=new Font("New Times Roman", 20, 16);//font used for questions
+	static Font font2=new Font("New Times Roman", 20, 30);//font used for the scoreboard
 
 	/**
 	 * Start of the program
@@ -45,7 +45,7 @@ public class Mancala {
 		c.println("RULES:");
 		c.println("1. Player 1's mancala is on the right and the row of holes on the bottom is player 1's side");
 		c.println("2. Player 2's mancala is on the left and the row of holes on the top is player 2's side");
-		c.println("3. The player deposits one stone in the following holes, in a counter-clockwise motion, until the stones run out.");
+		c.println("3. The player chooses a hole and deposits one stone in the following holes, in a counter-clockwise motion, until the stones run out.");
 		c.println("4. You're not allowed to take beads from your opponent's side");
 		c.println("5. Your own Mancala counts as a hole but your opponent's Mancala does not count");
 		c.println("6. The game ends when all six holes on a player's side of the Mancala board are empty");
@@ -96,9 +96,9 @@ public class Mancala {
 				if (playerTurn==true) {
 					//gets user input 
 					c.setFont(font1);
-					c.drawString("Which hole will you take the beads out of?(bottom row)", 75, 125);
+					c.drawString("Which hole will you take the beads out of?(your side is the bottom row)", 75, 125);
 					c.getCursor();
-					c.setCursor(8,11);
+					c.setCursor(9,11);
 					index=c.readInt();
 					Thread.sleep (1000/30);
 					c.clear();
@@ -112,9 +112,9 @@ public class Mancala {
 				else {
 					//gets user input 
 					c.setFont(font1);
-					c.drawString("Which hole will you take the beads out of?(top row)", 75, 125);
+					c.drawString("Which hole will you take the beads out of?(your side is the top row)", 75, 125);
 					c.getCursor();
-					c.setCursor(8,11);
+					c.setCursor(9,11);
 					index=c.readInt();
 					Thread.sleep (1000/30);
 					c.clear();
@@ -144,7 +144,7 @@ public class Mancala {
 			c.setFont(font1);
 			c.drawString("Do you want to play again?", 75, 125);
 			c.getCursor();
-			c.setCursor(8,11);
+			c.setCursor(9,11);
 			playerAnswer=c.readLine();
 			Thread.sleep(3000);
 			c.clear();
@@ -168,19 +168,21 @@ public class Mancala {
 			while ((holes[index]==0)||index==6||index==7||index==8||index==9||index==10||index==11||
 					index==12||index==13) {
 				c.setFont(font1);
-				c.drawString("Why are you trying to cheat???? Enter another hole: ", 75, 125);
+				c.drawString("Why are you trying to cheat? Enter another hole! The game will not proceed until you do. ", 75, 125);
 				c.getCursor();
-				c.setCursor(8,11);
+				c.setCursor(9,11);
 				index=c.readInt();
+				
 			}
 		}
 		else {
 			while ((holes[index]==0)||(index==0||index==1||index==2||index==3||index==4||index==5||
 					index==6||index==13)) {
-				c.setFont(font1);
-				c.drawString("Why are you trying to cheat???? Enter another hole: ", 75, 125);
 				c.getCursor();
-				c.setCursor(8,11);
+				c.setFont(font1);
+				c.drawString("Why are you trying to cheat? Enter another hole! The game will not proceed until you do. ", 75, 125);
+				c.getCursor();
+				c.setCursor(9,11);
 				index=c.readInt();
 			}
 		}
