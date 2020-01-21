@@ -2,7 +2,7 @@ package tran.culminating;
 
 import java.util.Scanner;
 /**
- * This program is meant for testing the logistics of Mancala without 
+ * This program is meant for testing Mancala without 
  * the graphics. 
  * Date: January 15, 2020
  * @author Trang Tran
