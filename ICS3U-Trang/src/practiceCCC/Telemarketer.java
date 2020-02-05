@@ -19,7 +19,6 @@ public class Main {
 			System.out.println("answer");
 	}
 
-	
 	/**
 	 * Checks if the last numbers of the telephone match the telemarketer criteria
 	 * @param numbers - the array of the last digits

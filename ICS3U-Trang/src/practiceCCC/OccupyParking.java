@@ -18,7 +18,6 @@ public class Main {
 		}
 		System.out.println(counter);
 	}
-	
 
 	public static boolean check(String yes, String tod, int limit, int i) {
 		if (yes.charAt(i)=='C' && tod.charAt(i)=='C') {

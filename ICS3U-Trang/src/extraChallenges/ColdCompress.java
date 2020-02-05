@@ -7,7 +7,6 @@ public class ColdCompress {
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		
-		//TODO:do this one 
 		int lines=sc.nextInt();
 		String [] characters= new String [lines];
 		
@@ -16,13 +15,24 @@ public class ColdCompress {
 		}
 		
 		for (int i=0;i<characters.length;i++) {
-		
+			count(characters[i]);
 		}
 	}
 	
-	public static int count() {
-		
-		return 0;
+	public static void count(String textLine) {
+		int count=0;
+		for (int i=0; i<=textLine.length();i++) {
+			count=0;
+			for (int a=0; a<textLine.length();a++) {
+				if (textLine.charAt(i)==textLine.charAt(a)) {
+					count++;
+				}
+			}
+			System.out.println(count+textLine.charAt(i));
+			if (textLine.charAt(i)==textLine.charAt(i+1)) {
+				i++;
+			}
+		}
 	}
 
 }

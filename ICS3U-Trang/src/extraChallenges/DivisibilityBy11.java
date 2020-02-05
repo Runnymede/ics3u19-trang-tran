@@ -15,23 +15,25 @@ public class DivisibilityBy11 {
 		 }
 		 
 		 for (int a=0;a<numbers;a++) {
-			 divisibility(input.get(a));
+			 int numberSecondary=input.get(a);
+			 if (subtract(input.get(a), input)%11==0) {
+				 System.out.println("The number "+ numberSecondary+" is divisible by 11.");
+			 }
+			 System.out.println();
 		 }
 	}
 
-	public static int divisibility(int number) {
+	public static int subtract(int number, List<Integer> input) {
 		int sub;
 		String number2;
-		
 		int length=Integer.toString(number).length();
-		for (int i=2; i<=length;i++) {
-			number2=Integer.toString(number);
-			
-//			System.out.println(number);
-//			sub=number%10;
-//			number=number-sub;
-		}
 		
+		for (int i=2; i<=length;i++) {
+			System.out.println(number);
+			sub=number%10;
+			number=number-sub;
+			number/=10;
+		}
 		return number;
 	}
 	
