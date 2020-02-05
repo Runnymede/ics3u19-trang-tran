@@ -7,4 +7,5 @@ public class AreWeThereYet {
 		Scanner sc=new Scanner(System.in);
 	}
 
+	
 }
