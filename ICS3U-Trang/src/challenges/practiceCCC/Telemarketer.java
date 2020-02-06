@@ -1,5 +1,3 @@
-package challenges.practiceCCC;
-
 import java.util.Scanner;
 
 public class Main {

@@ -6,6 +6,5 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/Users/trangtran/eclipse/hsa_new Resources/hsa_new.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
