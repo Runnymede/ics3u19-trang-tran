@@ -1,4 +1,4 @@
-package extraChallenges;
+package challenges.Dmoj;
 
 import java.util.Scanner;
 

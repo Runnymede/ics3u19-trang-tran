@@ -1,4 +1,4 @@
-package practiceCCC;
+package challenges.practiceCCC;
 import java.util.Scanner;
 
 public class AreWeThereYet {

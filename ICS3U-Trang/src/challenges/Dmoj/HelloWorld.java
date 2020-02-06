@@ -1,4 +1,4 @@
-package extraChallenges;
+package challenges.Dmoj;
 
 public class HelloWorld {
 
