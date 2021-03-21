@@ -19,7 +19,7 @@ public class MathTutor {
 		Scanner sc=new Scanner(System.in);
 		
 		//Rounding the answers to 2 decimal places
-		DecimalFormat doubleDecimal=new DecimalFormat("#.##");
+		DecimalFormat doubleDecimal = new DecimalFormat("#.##");
 		
 		//variables
 		double userAnswer;
